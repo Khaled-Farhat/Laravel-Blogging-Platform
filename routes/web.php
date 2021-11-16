@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::view('/admin', 'layouts.admin', ['currentPage' => 'categories']);
-Route::view('/admin/categories', 'admin.categories.index', ['currentPage' => 'categories']);
+Route::view('/admin', 'layouts.admin');
+
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::resource('/categories', CategoryController::class);
+});
