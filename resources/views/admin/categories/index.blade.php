@@ -1,7 +1,19 @@
 @extends('layouts.admin', ['currentPage' => 'categories'])
 
 @section('content')
-    <a class="btn btn-primary">Create Category</a>
+        {!! Form::open(['method' => 'POST', 'route' => 'admin.categories.store', 'class' => 'form-inline'])!!}
+        {!! Form::label('name', 'Category Name:') !!}
+            {!! Form::text('name', null, [
+                    'class' => 'form-control mx-2 ' . ($errors->has('name') ? 'is-invalid' : ''),
+            ]) !!}
+            @error('name')
+                <div class="text-danger mr-2">
+                    {{ $message }}
+                </div>
+            @enderror
+            {!! Form::submit('Create Category', ['class' => 'btn btn-primary']) !!}
+
+        {!! Form::close() !!}
 
     <table class="table mt-3">
         <thead>
