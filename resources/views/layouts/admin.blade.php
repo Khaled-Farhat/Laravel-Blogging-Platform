@@ -30,11 +30,6 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-
-                </ul>
-
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Logout Link -->
@@ -59,17 +54,12 @@
             </div>
         </nav>
 
-        
-
-
-
         <div class="row">
             <div class="col-2 px-4 py-3">
                 <x-admin.side-nav :currentPage="$currentPage"></x-admin.side-nav>
             </div>
 
-            <div class="col-9">
-                Hello
+            <div class="col-9 py-3">
                 @yield('content')
             </div>
         </div>

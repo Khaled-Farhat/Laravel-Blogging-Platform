@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::view('/admin', 'layouts.admin', ['currentPage' => 'categories']);
+Route::view('/admin/categories', 'admin.categories.index', ['currentPage' => 'categories']);
