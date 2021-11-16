@@ -64,11 +64,11 @@
 
 
         <div class="row">
-            <div class="col-2">
+            <div class="col-2 px-4 py-3">
                 <x-admin.side-nav :currentPage="$currentPage"></x-admin.side-nav>
             </div>
 
-            <div class="col-10">
+            <div class="col-9">
                 Hello
                 @yield('content')
             </div>

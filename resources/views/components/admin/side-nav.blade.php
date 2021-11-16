@@ -1,5 +1,5 @@
-<div class="p-2 nav flex-column nav-pills" aria-orientation="vertical">
-    <a class="nav-link {{ $currentPage == 'articles' ? 'active' : '' }}" data-toggle="pill" href="#v-pills-home">Articles</a>
-    <a class="nav-link {{ $currentPage == 'categories' ? 'active' : '' }}" data-toggle="pill" href="#v-pills-profile">Categories</a>
-    <a class="nav-link {{ $currentPage == 'tags' ? 'active' : '' }}" data-toggle="pill" href="#v-pills-messages">Tags</a>
+<div class="list-group" id="list-tab" role="tablist">
+    <a class="list-group-item list-group-item-action {{ $currentPage == 'articles' ? 'active' : '' }}" data-toggle="list" href="#list-home" role="tab">Articles</a>
+    <a class="list-group-item list-group-item-action {{ $currentPage == 'categories' ? 'active' : '' }}" data-toggle="list" href="#list-profile" role="tab">Categories</a>
+    <a class="list-group-item list-group-item-action {{ $currentPage == 'tags' ? 'active' : '' }}" data-toggle="list" href="#list-messages" role="tab">Tags</a>
 </div>
