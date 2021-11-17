@@ -36,12 +36,4 @@ class UserFactory extends Factory
             ];
         });
     }
-
-    public function admin() {
-        return [
-            'name' => 'admin',
-            'email' => 'admin@simple-blog.test',
-            'password' => bcrypt('password'),
-        ];
-    }
 }
