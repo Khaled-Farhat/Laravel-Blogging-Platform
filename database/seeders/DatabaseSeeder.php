@@ -7,6 +7,7 @@ use App\Models\Article;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,9 +18,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //Category::factory(5)->create();
-        //Tag::factory(3)->create();
-        //User::factory(2)->hasArticles(2)->create();
-        Article::factory()->create();
+        User::factory('admin');
+
+        Tag::factory(10)->create();
+        User::factory(2)->hasArticles(2)->create();
     }
 }
