@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/articles/{article}', [HomeController::class, 'show'])->name('article.show');
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
 
 Route::view('/admin', 'layouts.admin')->name('admin.index');
 
