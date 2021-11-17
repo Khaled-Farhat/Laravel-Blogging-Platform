@@ -1,5 +1,5 @@
 {{ Form::label($labelName, null, ['class' => 'control-label mt-3']) }}
-{{ Form::text($inputName, old($inputName), array_merge([
+{{ Form::textarea($inputName, old($inputName), array_merge([
         $inputAttributes,
         'class' => 'form-control '
             . ($errors->has($inputName) ? 'is-invalid ' : '')

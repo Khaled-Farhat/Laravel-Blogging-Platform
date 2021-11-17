@@ -30,5 +30,18 @@ class FormServiceProvider extends ServiceProvider
             'inputClass' => '',
             'inputAttributes' => '',
         ]);
+
+        Form::component('textareaField', 'components.form.textarea-field', [
+            'labelName',
+            'inputName',
+            'inputClass' => '',
+            'inputAttributes' => '',
+        ]);
+
+        Form::component('submitButton', 'components.form.submit-button', [
+            'buttonText' => 'Submit',
+            'buttonType' => 'primary',
+            'buttonClass' => '',
+        ]);
     }
 }
