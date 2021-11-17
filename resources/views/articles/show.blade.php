@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+@extends('layouts.blog-page', [
     'categories' => $categories,
     'tags' => $tags,
 ])

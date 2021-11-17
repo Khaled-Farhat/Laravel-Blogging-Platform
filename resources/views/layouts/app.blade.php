@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -36,35 +36,17 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <x-links.nav-items :categories="$categories"></x-links.nav-items>
-                    </ul>
+                    @isset($categories)
+                        <ul class="navbar-nav ml-auto">
+                            <x-links.nav-items :categories="$categories"></x-links.nav-items>
+                        </ul>
+                    @endisset
                 </div>
             </div>
         </nav>
 
-        <main class="py-4 d-flex container">
-            <div class="col-8">
-                @yield('main')
-            </div>
-            <div class="col-4">
-                <x-links.sidebar :tags="$tags"></x-links.sidebar>
-            </div>
-        </main>
-    </div>
-
-    <div class="container-fluid bg-white">
-        <div class="container">
-            <div class="row py-4">
-                <p class="mr-auto">Copyrights, All rights reserved.</p>
-
-                @guest
-                    <a href="">Admin Login</a>
-                @else
-                    <a href="{{ route('admin.index') }}" class="mr-4">Admin Panel</a>
-                    <a href="">Admin Logout</a>
-                @endguest
-            </div>
+        <div class="mt-4">
+            @yield('content')
         </div>
     </div>
 </body>
