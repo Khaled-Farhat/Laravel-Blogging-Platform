@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::view('/admin', 'layouts.admin');
+Route::view('/admin', 'layouts.admin')->name('admin.index');
 
 Route::middleware('auth')
     ->prefix('admin')
