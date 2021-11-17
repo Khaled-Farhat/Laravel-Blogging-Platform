@@ -1,7 +1,11 @@
 @extends('layouts.admin', ['currentPage' => 'categories'])
 
 @section('content')
-        {!! Form::open(['method' => 'POST', 'route' => 'admin.categories.store', 'class' => 'form-inline'])!!}
+        {!! Form::open([
+                'method' => 'POST',
+                'route' => 'admin.categories.store',
+                'class' => 'form-inline'
+            ])!!}
             {!! Form::textField('Category Name: ', 'name', 'mx-2') !!}
             {!! Form::submit('Create Category', ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}
@@ -19,9 +23,21 @@
                 <tr>
                     <th scope="row">{{ $category->id }}</th>
                     <td>{{ $category->name }}</td>
-                    <td>
-                        <a class="btn btn-warning">Edit</a>
-                        <a class="btn btn-danger">Delete</a>
+                    <td class="d-flex flex-row">
+                        {{ Form::open([
+                            'method' => 'GET',
+                            'route' => ['admin.categories.edit', $category],
+                            'class' => 'mx-1'
+                        ]) }}
+                        {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
+                    {{ Form::close() }}
+                        {{ Form::open([
+                                'method' => 'DELETE',
+                                'route' => ['admin.categories.destroy', $category],
+                                'class' => 'mx-1'
+                            ]) }}
+                            {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                        {{ Form::close() }}
                     </td>
                 </tr>
             @endforeach

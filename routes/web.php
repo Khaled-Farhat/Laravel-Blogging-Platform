@@ -24,6 +24,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::view('/admin', 'layouts.admin');
 
-Route::prefix('admin')->name('admin.')->group(function() {
-    Route::resource('/categories', CategoryController::class);
+Route::middleware('auth')
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function() {
+        Route::resource('/categories', CategoryController::class);
 });

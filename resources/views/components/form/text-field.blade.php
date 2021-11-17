@@ -7,7 +7,7 @@
     ])) }}
 
 @error($inputName)
-    <div class="text-danger mx-2">
+    <div class="text-danger m-1">
         {{ $message }}
     </div>
 @enderror
