@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,6 @@ Route::middleware('auth')
     ->name('admin.')
     ->group(function() {
         Route::resource('/categories', CategoryController::class);
-});
+        Route::resource('/tags', TagController::class);
+    }
+);
