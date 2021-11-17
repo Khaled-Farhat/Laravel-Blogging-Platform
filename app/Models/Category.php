@@ -12,11 +12,13 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
-    public function articles() {
+    public function articles()
+    {
         return $this->hasMany(Article::class);
     }
 
-    public function setNameAttribute($name) {
+    public function setNameAttribute($name)
+    {
         $this->attributes['name'] = ucfirst($name);
     }
 }

@@ -11,7 +11,8 @@ class Tag extends Model
 
     protected $fillable = ['name'];
 
-    public function setNameAttribute($name) {
+    public function setNameAttribute($name)
+    {
         $this->attributes['name'] = ucfirst($name);
     }
 }
