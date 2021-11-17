@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\ArticleController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Front\CategoryController;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\UserController;
 
 /*
 |--------------------------------------------------------------------------
