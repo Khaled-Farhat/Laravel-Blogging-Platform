@@ -10,7 +10,7 @@
             <h5 class="card-title">{{ $article->title }}</h5>
             <h6 class="card-subtitle text-muted">Posted {{ $article->created_at->diffForHumans() }} by <a href="#">{{ $article->user->name }}</a></h6>
             <br>
-            <p class="card-text">{{ $article->body }}</p>
+            <p class="card-text">{!! nl2br(e($article->body)) !!}</p>
         </div>
     </div>
 @endsection

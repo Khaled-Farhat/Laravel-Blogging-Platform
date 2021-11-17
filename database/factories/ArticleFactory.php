@@ -19,7 +19,7 @@ class ArticleFactory extends Factory
             'user_id' => User::factory()->create(),
             'category_id' => Category::factory()->create(),
             'title' => $this->faker->sentence(),
-            'body' => $this->faker->paragraph(),
+            'body' => $this->faker->paragraphs(3, true),
         ];
     }
 }
