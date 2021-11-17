@@ -37,7 +37,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        @yield('nav-items')
+                        <x-links.nav-items :categories="$categories"></x-links.nav-items>
                     </ul>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 @yield('main')
             </div>
             <div class="col-4">
-                @yield('side')
+                <x-links.sidebar :tags="$tags"></x-links.sidebar>
             </div>
         </main>
     </div>

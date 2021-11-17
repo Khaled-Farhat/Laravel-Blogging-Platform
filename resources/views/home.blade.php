@@ -1,12 +1,7 @@
-@extends('layouts.app')
-
-@section('nav-items')
-    @foreach($categories as $category)
-        <li class="nav-item">
-            <a class="nav-link" href="">{{ $category->name }}</a>
-        </li>
-    @endforeach
-@endsection
+@extends('layouts.app', [
+    'categories' => $categories,
+    'tags' => $tags,
+])
 
 @section('main')
     @foreach($articles as $article)
@@ -21,17 +16,4 @@
             </div>
         </div>
     @endforeach
-@endsection
-
-@section('side')
-        <div class="card mb-3">
-            <div class="card-header">
-                <h4>Tags</h4>
-            </div>
-            <div class="card-body">
-                @foreach($tags as $tag)
-                    <a href="#" class="btn btn-light mb-1">{{ $tag->name }}</a>
-                @endforeach
-            </div>
-        </div>
 @endsection
