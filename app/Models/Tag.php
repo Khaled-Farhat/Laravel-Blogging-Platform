@@ -10,4 +10,8 @@ class Tag extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function setNameAttribute($name) {
+        $this->attributes['name'] = ucfirst($name);
+    }
 }

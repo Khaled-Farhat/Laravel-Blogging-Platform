@@ -15,4 +15,8 @@ class Category extends Model
     public function articles() {
         return $this->hasMany(Article::class);
     }
+
+    public function setNameAttribute($name) {
+        $this->attributes['name'] = ucfirst($name);
+    }
 }
