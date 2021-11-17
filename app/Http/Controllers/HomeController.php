@@ -22,4 +22,18 @@ class HomeController extends Controller
             'tags' => Tag::all(),
         ]);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Article  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Article $article) {
+        return view('article', [
+            'article' => $article,
+            'categories' => Category::all(),
+            'tags' => Tag::all(),
+        ]);
+    }
 }

@@ -12,7 +12,7 @@
                 <h6 class="card-subtitle text-muted">Posted {{ $article->created_at->diffForHumans() }} by <a href="#">{{ $article->user->name }}</a></h6>
                 <br>
                 <p class="card-text">{{ Str::limit($article->body, 256) }}</p>
-                <a href="#" class="btn btn-primary">Continue Reading</a>
+                <a href="{{ route('article.show', $article) }}" class="btn btn-primary">Continue Reading</a>
             </div>
         </div>
     @endforeach
