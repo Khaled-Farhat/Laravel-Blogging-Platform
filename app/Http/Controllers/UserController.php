@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('home', [
+        return view('articles.index', [
             'articles' => $user->articles,
             'categories' => Category::all(),
             'tags' => Tag::all(),

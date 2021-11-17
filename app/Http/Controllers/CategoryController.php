@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('home', [
+        return view('articles.index', [
             'articles' => $category->articles,
             'categories' => Category::all(),
             'tags' => Tag::all(),

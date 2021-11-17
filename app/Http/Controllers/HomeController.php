@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', [
+        return view('articles.index', [
             'articles' => Article::all(),
             'categories' => Category::all(),
             'tags' => Tag::all(),
@@ -30,7 +30,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Article $article) {
-        return view('article', [
+        return view('articles.show', [
             'article' => $article,
             'categories' => Category::all(),
             'tags' => Tag::all(),
