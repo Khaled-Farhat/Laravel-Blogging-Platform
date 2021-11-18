@@ -17,13 +17,16 @@
                     <th scope="row">{{ $category->id }}</th>
                     <td>{{ $category->name }}</td>
                     <td class="d-flex flex-row">
+                        <a href="{{ route('admin.categories.show', $category) }}" class="btn btn-primary">Show</a>
+
                         {{ Form::open([
                             'method' => 'GET',
                             'route' => ['admin.categories.edit', $category],
                             'class' => 'mx-1'
                         ]) }}
-                        {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
-                    {{ Form::close() }}
+                            {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
+                        {{ Form::close() }}
+
                         {{ Form::open([
                                 'method' => 'DELETE',
                                 'route' => ['admin.categories.destroy', $category],

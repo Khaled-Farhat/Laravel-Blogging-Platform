@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
+use App\Models\Article;
 
 class AdminCategoryController extends Controller
 {
@@ -53,7 +54,10 @@ class AdminCategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('admin.articles.index', [
+            'articles' => $category->articles,
+            'head' => 'Showing articles from category: ' . $category->name,
+        ]);
     }
 
     /**

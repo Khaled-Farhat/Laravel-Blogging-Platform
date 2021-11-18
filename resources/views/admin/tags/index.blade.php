@@ -16,13 +16,16 @@
                     <th scope="row">{{ $tag->id }}</th>
                     <td>{{ $tag->name }}</td>
                     <td class="d-flex flex-row">
+                        <a href="{{ route('admin.tags.show', $tag) }}" class="btn btn-primary">Show</a>
+
                         {{ Form::open([
                             'method' => 'GET',
                             'route' => ['admin.tags.edit', $tag],
                             'class' => 'mx-1'
                         ]) }}
-                        {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
-                    {{ Form::close() }}
+                            {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
+                        {{ Form::close() }}
+
                         {{ Form::open([
                                 'method' => 'DELETE',
                                 'route' => ['admin.tags.destroy', $tag],

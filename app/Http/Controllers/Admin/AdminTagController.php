@@ -51,7 +51,10 @@ class AdminTagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return view('admin.articles.index', [
+            'articles' => $tag->articles,
+            'head' => 'Showing articles with tag: ' . $tag->name,
+        ]);
     }
 
     /**

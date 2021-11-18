@@ -32,7 +32,7 @@ Route::middleware('auth')
     ->prefix('admin')
     ->name('admin.')
     ->group(function() {
-        Route::redirect('/', '/admin/articles')->name('admin.index');
+        Route::redirect('/', '/admin/articles')->name('index');
 
         Route::resource('/categories', AdminCategoryController::class);
         Route::resource('/tags', AdminTagController::class);

@@ -1,6 +1,10 @@
 @extends('layouts.admin', ['currentPage' => 'articles'])
 
 @section('content')
+    @isset($head)
+        <h2 class="mb-4">{{ $head }}</h2>
+    @endisset
+
     <a class="btn btn-primary" href="{{ route('admin.articles.create') }}">Create Article</a>
 
     <table class="table mt-3">
@@ -22,13 +26,16 @@
                     <td>{{ $article->title }}</td>
                     <td>{{ $article->category->name ?? 'Uncategorized' }}</td>
                     <td class="d-flex flex-row">
+                        <a href="{{ route('admin.articles.show', $article) }}" class="btn btn-primary">Show</a>
+
                         {{ Form::open([
                             'method' => 'GET',
                             'route' => ['admin.articles.edit', $article],
                             'class' => 'mx-1'
                         ]) }}
-                        {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
-                    {{ Form::close() }}
+                            {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
+                        {{ Form::close() }}
+
                         {{ Form::open([
                                 'method' => 'DELETE',
                                 'route' => ['admin.articles.destroy', $article],

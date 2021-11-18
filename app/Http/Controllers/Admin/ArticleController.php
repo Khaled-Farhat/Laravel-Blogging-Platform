@@ -53,7 +53,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return redirect()->route('articles.show', $article);
     }
 
     /**
