@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Article;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -27,13 +28,13 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        Category::factory(5)->create();
         Tag::factory(15)->create();
-        User::factory(2)->hasArticles(2)->create();
+        User::factory(3)->hasArticles(2)->create();
 
         $tags = Tag::all();
         Article::all()->each(function($article) use($tags) {
             $article->tags()->attach($tags->random(rand(1, 5))->pluck('id'));
+            $article->comments()->save(Comment::factory()->make());
         });
     }
 }
