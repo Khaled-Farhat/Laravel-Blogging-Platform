@@ -23,10 +23,10 @@ use App\Http\Controllers\Front\UserController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/articles/{article}', [HomeController::class, 'show'])->name('article.show');
-Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('category.show');
-Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tag.show');
-Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
+Route::get('/articles/{article}', [HomeController::class, 'show'])->name('articles.show');
+Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
+Route::get('/user/{user}', [UserController::class, 'show'])->name('users.show');
 
 Route::view('/admin', 'layouts.admin')->name('admin.index');
 

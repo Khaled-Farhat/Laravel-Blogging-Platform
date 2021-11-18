@@ -4,7 +4,7 @@
     </div>
     <div class="card-body">
         @foreach($tags as $tag)
-            <a href="#" class="btn btn-light mb-1">{{ $tag->name }}</a>
+            <a href="{{ route('tags.show', $tag) }}" class="btn btn-light mb-1">{{ $tag->name }}</a>
         @endforeach
     </div>
 </div>
