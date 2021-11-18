@@ -28,12 +28,12 @@ Route::get('/categories/{category}', [CategoryController::class, 'show'])->name(
 Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
 Route::get('/user/{user}', [UserController::class, 'show'])->name('users.show');
 
-Route::view('/admin', 'layouts.admin')->name('admin.index');
-
 Route::middleware('auth')
     ->prefix('admin')
     ->name('admin.')
     ->group(function() {
+        Route::redirect('/', '/admin/articles')->name('admin.index');
+
         Route::resource('/categories', AdminCategoryController::class);
         Route::resource('/tags', AdminTagController::class);
         Route::resource('/articles', ArticleController::class);

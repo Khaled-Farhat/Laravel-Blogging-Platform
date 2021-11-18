@@ -19,7 +19,15 @@
                 <a href="{{ route('login') }}">Admin Login</a>
             @else
                 <a href="{{ route('admin.index') }}" class="mr-4">Admin Panel</a>
-                <a href="{{ route('logout') }}">Admin Logout</a>
+
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                    Admin Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             @endguest
         </div>
     </div>
