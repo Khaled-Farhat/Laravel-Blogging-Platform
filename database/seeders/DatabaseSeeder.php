@@ -27,7 +27,13 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        Tag::factory(10)->create();
+        Category::factory(5)->create();
+        Tag::factory(15)->create();
         User::factory(2)->hasArticles(2)->create();
+
+        $tags = Tag::all();
+        Article::all()->each(function($article) use($tags) {
+            $article->tags()->attach($tags->random(rand(1, 5))->pluck('id'));
+        });
     }
 }
