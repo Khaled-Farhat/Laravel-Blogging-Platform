@@ -27,7 +27,7 @@ class AdminTagController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tags.create');
     }
 
     /**
@@ -40,7 +40,7 @@ class AdminTagController extends Controller
     {
         Tag::create($request->validated());
 
-        return redirect()->back();
+        return redirect()->route('admin.tags.index');
     }
 
     /**

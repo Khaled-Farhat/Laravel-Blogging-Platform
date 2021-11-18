@@ -29,7 +29,7 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class AdminCategoryController extends Controller
     {
         Category::create($request->validated());
 
-        return redirect()->back();
+        return redirect()->route('admin.categories.index');
     }
 
     /**

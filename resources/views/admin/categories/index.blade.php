@@ -1,13 +1,7 @@
 @extends('layouts.admin', ['currentPage' => 'categories'])
 
 @section('content')
-        {!! Form::open([
-                'method' => 'POST',
-                'route' => 'admin.categories.store',
-            ])!!}
-            {!! Form::textField('Category Name: ', 'name') !!}
-            {!! Form::submitButton('Create Category') !!}
-        {!! Form::close() !!}
+    <a class="btn btn-primary" href="{{ route('admin.categories.create') }}">Create Category</a>
 
     <table class="table mt-3">
         <thead>

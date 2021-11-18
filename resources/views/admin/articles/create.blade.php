@@ -1,7 +1,7 @@
 @extends('layouts.admin', ['currentPage' => 'articles'])
 
 @section('content')
-    <h1 class="mb-3">Create Article</h1>
+    <h1 class="mb">Create Article</h1>
 
     {!! Form::open([
             'method' => 'POST',

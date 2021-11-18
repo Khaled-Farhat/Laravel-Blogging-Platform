@@ -1,15 +1,7 @@
 @extends('layouts.admin', ['currentPage' => 'tags'])
 
 @section('content')
-        {!! Form::open([
-                'method' => 'POST',
-                'route' => 'admin.tags.store',
-                'class' => 'form-inline'
-            ])!!}
-            {!! Form::textField('Tag Name: ', 'name', 'mx-2') !!}
-            {!! Form::submit('Create Tag', ['class' => 'btn btn-primary']) !!}
-        {!! Form::close() !!}
-
+    <a class="btn btn-primary" href="{{ route('admin.tags.create') }}">Create Tag</a>
     <table class="table mt-3">
         <thead>
             <tr>
