@@ -15,7 +15,13 @@
                 in category: <a href="{{ route('categories.show', $article->category) }}">{{ $article->category->name }}</a>
                 @endisset
             </h6>
-            <br>
+
+            <div class="my-3">
+                @foreach($article->tags as $tag)
+                    <a class="btn-sm btn-light" href="{{ route('tags.show', $tag) }}">{{ $tag->name }}</a>
+                @endforeach
+            </div>
+
             <p class="card-text">{!! nl2br(e($article->body)) !!}</p>
         </div>
     </div>

@@ -19,9 +19,14 @@
                     @isset($article->category)
                     in category: <a href="{{ route('categories.show', $article->category) }}">{{ $article->category->name }}</a>
                     @endisset
-
                 </h6>
-                <br>
+
+                <div class="my-3">
+                    @foreach($article->tags as $tag)
+                        <a class="btn-sm btn-light" href="{{ route('tags.show', $tag) }}">{{ $tag->name }}</a>
+                    @endforeach
+                </div>
+
                 <p class="card-text">{{ Str::limit($article->body, 256) }}</p>
                 <a href="{{ route('articles.show', $article) }}" class="btn btn-primary">Continue Reading</a>
             </div>
