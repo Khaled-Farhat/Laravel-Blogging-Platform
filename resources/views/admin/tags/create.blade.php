@@ -7,7 +7,7 @@
             'method' => 'POST',
             'route' => 'admin.tags.store'
         ]) !!}
-        {!! Form::textField('Tag Name: ', 'name') !!}
-        {!! Form::submitButton('Create Tag') !!}
+    {!! Form::textField('Tag Name: ', 'name') !!}
+    {!! Form::submitButton('Create Tag') !!}
     {!! Form::close() !!}
 @endsection

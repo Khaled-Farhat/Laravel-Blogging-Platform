@@ -23,8 +23,8 @@
                             'method' => 'GET',
                             'route' => ['admin.categories.edit', $category],
                             'class' => 'mx-1'
-                        ]) }}
-                            {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
+                            ]) }}
+                        {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
                         {{ Form::close() }}
 
                         {{ Form::open([
@@ -32,7 +32,7 @@
                                 'route' => ['admin.categories.destroy', $category],
                                 'class' => 'mx-1'
                             ]) }}
-                            {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                        {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                         {{ Form::close() }}
                     </td>
                 </tr>

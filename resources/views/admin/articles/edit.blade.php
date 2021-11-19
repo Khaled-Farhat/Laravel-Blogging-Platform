@@ -7,8 +7,8 @@
             'method' => 'PUT',
             'route' => ['admin.articles.update', $article]
         ]) !!}
-        {!! Form::textField('Title: ', 'title') !!}
-        {!! Form::textareaField('Body: ', 'body') !!}
-        {!! Form::submitButton('Update Article') !!}
+    {!! Form::textField('Title: ', 'title') !!}
+    {!! Form::textareaField('Body: ', 'body') !!}
+    {!! Form::submitButton('Update Article') !!}
     {!! Form::close() !!}
 @endsection

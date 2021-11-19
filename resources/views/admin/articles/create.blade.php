@@ -7,8 +7,8 @@
             'method' => 'POST',
             'route' => 'admin.articles.store'
         ]) !!}
-        {!! Form::textField('Title: ', 'title') !!}
-        {!! Form::textareaField('Body: ', 'body') !!}
-        {!! Form::submitButton('Create Article') !!}
+    {!! Form::textField('Title: ', 'title') !!}
+    {!! Form::textareaField('Body: ', 'body') !!}
+    {!! Form::submitButton('Create Article') !!}
     {!! Form::close() !!}
 @endsection

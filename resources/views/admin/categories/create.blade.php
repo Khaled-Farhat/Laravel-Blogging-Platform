@@ -7,7 +7,7 @@
             'method' => 'POST',
             'route' => 'admin.categories.store'
         ]) !!}
-        {!! Form::textField('Category Name: ', 'name') !!}
-        {!! Form::submitButton('Create Category') !!}
+    {!! Form::textField('Category Name: ', 'name') !!}
+    {!! Form::submitButton('Create Category') !!}
     {!! Form::close() !!}
 @endsection
