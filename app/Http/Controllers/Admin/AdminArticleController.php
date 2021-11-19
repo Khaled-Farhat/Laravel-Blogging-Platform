@@ -9,7 +9,7 @@ use App\Models\Article;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller
+class AdminArticleController extends Controller
 {
     /**
      * Display a listing of the resource.

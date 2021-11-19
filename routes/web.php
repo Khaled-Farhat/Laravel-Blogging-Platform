@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminTagController;
-use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Front\CategoryController;
 use App\Http\Controllers\Front\CommentController;
 use App\Http\Controllers\Front\HomeController;
@@ -42,6 +42,6 @@ Route::middleware('auth')
 
         Route::resource('/categories', AdminCategoryController::class);
         Route::resource('/tags', AdminTagController::class);
-        Route::resource('/articles', ArticleController::class);
+        Route::resource('/articles', AdminArticleController::class);
     }
 );
