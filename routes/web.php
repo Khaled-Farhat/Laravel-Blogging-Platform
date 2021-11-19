@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Front\CategoryController;
@@ -33,6 +34,9 @@ Route::middleware('auth')
     ->name('admin.')
     ->group(function() {
         Route::redirect('/', '/admin/articles')->name('index');
+
+        Route::match(['PUT', 'PATCH'], '/comments/{comment}', [AdminCommentController::class, 'approve'])->name('comments.approve');
+        Route::resource('/comments', AdminCommentController::class)->only(['index', 'store', 'destroy']);
 
         Route::resource('/categories', AdminCategoryController::class);
         Route::resource('/tags', AdminTagController::class);

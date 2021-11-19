@@ -31,8 +31,14 @@ class Comment extends Model
         $query->withoutGlobalScope('reviewed');
     }
 
-    public function review() {
+    public function approve() {
         $this->reviewed_at = now();
+        $this->save();
+    }
+
+    public function isPendingReview()
+    {
+        return is_null($this->reviewed_at);
     }
 
     public function article()
