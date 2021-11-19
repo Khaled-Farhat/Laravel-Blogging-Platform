@@ -10,6 +10,12 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'article_id',
+        'name',
+        'body',
+    ];
+
     protected $attributes = [
         'reviewed_at' => null,
     ];

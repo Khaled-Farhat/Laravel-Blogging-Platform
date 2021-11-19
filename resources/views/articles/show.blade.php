@@ -43,10 +43,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Create a comment:</h5>
-                        {{ Form::open() }}
-                            {{ Form::textField('Name: ', 'name') }}
-                            {{ Form::textareaField('Comment: ', 'comment') }}
-                            {{ Form::submitButton('Create commment') }}
+                        {{ Form::open([
+                                'method' => 'POST',
+                                'route' => 'comments.store'
+                            ]) }}
+                        {{ Form::hidden('article_id', $article->id) }}
+                        {{ Form::textField('Name: ', 'name') }}
+                        {{ Form::textareaField('Comment: ', 'body') }}
+                        {{ Form::submitButton('Create commment') }}
                         {{ Form::close() }}
                     </div>
                 </div>

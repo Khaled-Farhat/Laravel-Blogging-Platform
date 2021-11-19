@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Front\CategoryController;
+use App\Http\Controllers\Front\CommentController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\TagController;
 use App\Http\Controllers\Front\UserController;
@@ -28,6 +29,7 @@ Route::get('/articles/{article}', [HomeController::class, 'show'])->name('articl
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
 Route::get('/user/{user}', [UserController::class, 'show'])->name('users.show');
+Route::resource('/comments', CommentController::class)->only('store');
 
 Route::middleware('auth')
     ->prefix('admin')
@@ -36,7 +38,7 @@ Route::middleware('auth')
         Route::redirect('/', '/admin/articles')->name('index');
 
         Route::match(['PUT', 'PATCH'], '/comments/{comment}', [AdminCommentController::class, 'approve'])->name('comments.approve');
-        Route::resource('/comments', AdminCommentController::class)->only(['index', 'store', 'destroy']);
+        Route::resource('/comments', AdminCommentController::class)->only(['index', 'destroy']);
 
         Route::resource('/categories', AdminCategoryController::class);
         Route::resource('/tags', AdminTagController::class);
