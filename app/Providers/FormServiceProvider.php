@@ -24,6 +24,22 @@ class FormServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Form::component('emailField', 'components.form.email-field', [
+            'inputClass' => '',
+            'inputAttributes' => '',
+        ]);
+
+        Form::component('passwordField', 'components.form.password-field', [
+            'inputClass' => '',
+            'inputAttributes' => '',
+        ]);
+
+        Form::component('submitButton', 'components.form.submit-button', [
+            'buttonText' => 'Submit',
+            'buttonType' => 'primary',
+            'buttonClass' => '',
+        ]);
+
         Form::component('textField', 'components.form.text-field', [
             'labelName',
             'inputName',
@@ -36,12 +52,6 @@ class FormServiceProvider extends ServiceProvider
             'inputName',
             'inputClass' => '',
             'inputAttributes' => '',
-        ]);
-
-        Form::component('submitButton', 'components.form.submit-button', [
-            'buttonText' => 'Submit',
-            'buttonType' => 'primary',
-            'buttonClass' => '',
         ]);
     }
 }
