@@ -1,12 +1,12 @@
-{{ Form::label('Email: ', null, ['class' => 'control-label mt-3']) }}
-{{ Form::email('email', old('email'), array_merge([
+{{ Form::label($labelName, null, ['class' => 'control-label mt-3']) }}
+{{ Form::email($inputName, old($inputName), array_merge([
         $inputAttributes,
         'class' => 'form-control '
-            . ($errors->has('email') ? 'is-invalid ' : '')
+            . ($errors->has($inputName) ? 'is-invalid ' : '')
             . $inputClass,
     ])) }}
 
-@error('email')
+@error($inputName)
     <div class="text-danger mb-1">
         {{ $message }}
     </div>

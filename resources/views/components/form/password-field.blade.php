@@ -1,12 +1,12 @@
-{{ Form::label('Password: ', null, ['class' => 'control-label mt-3']) }}
-{{ Form::password('password', array_merge([
+{{ Form::label($labelName, null, ['class' => 'control-label mt-3']) }}
+{{ Form::password($inputName, array_merge([
         $inputAttributes,
         'class' => 'form-control '
-            . ($errors->has('password') ? 'is-invalid ' : '')
+            . ($errors->has($inputName) ? 'is-invalid ' : '')
             . $inputClass,
     ])) }}
 
-@error('password')
+@error($inputName)
     <div class="text-danger mb-1">
         {{ $message }}
     </div>

@@ -25,11 +25,15 @@ class FormServiceProvider extends ServiceProvider
     public function boot()
     {
         Form::component('emailField', 'components.form.email-field', [
+            'labelName',
+            'inputName',
             'inputClass' => '',
             'inputAttributes' => '',
         ]);
 
         Form::component('passwordField', 'components.form.password-field', [
+            'labelName',
+            'inputName',
             'inputClass' => '',
             'inputAttributes' => '',
         ]);
