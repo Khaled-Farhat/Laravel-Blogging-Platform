@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Show the application dashboard.

@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Front\CategoryController;
 use App\Http\Controllers\Front\CommentController;
-use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\ArticleController;
 use App\Http\Controllers\Front\TagController;
 use App\Http\Controllers\Front\UserController;
 
@@ -24,12 +24,13 @@ use App\Http\Controllers\Front\UserController;
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/articles/{article}', [HomeController::class, 'show'])->name('articles.show');
-Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
-Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
-Route::get('/user/{user}', [UserController::class, 'show'])->name('users.show');
+Route::redirect('/', '/articles')->name('home');
+
+Route::resource('/articles', ArticleController::class)->only('index', 'show');
+Route::resource('/categories', CategoryController::class)->only('show');
 Route::resource('/comments', CommentController::class)->only('store');
+Route::resource('/tags', TagController::class)->only('show');
+Route::resource('/users', UserController::class)->only('show');
 
 Route::middleware('auth')
     ->prefix('admin')
@@ -37,11 +38,12 @@ Route::middleware('auth')
     ->group(function() {
         Route::redirect('/', '/admin/articles')->name('index');
 
+        Route::resource('/articles', AdminArticleController::class);
+        Route::resource('/categories', AdminCategoryController::class);
+
         Route::match(['PUT', 'PATCH'], '/comments/{comment}', [AdminCommentController::class, 'approve'])->name('comments.approve');
         Route::resource('/comments', AdminCommentController::class)->only(['index', 'destroy']);
 
-        Route::resource('/categories', AdminCategoryController::class);
         Route::resource('/tags', AdminTagController::class);
-        Route::resource('/articles', AdminArticleController::class);
     }
 );
