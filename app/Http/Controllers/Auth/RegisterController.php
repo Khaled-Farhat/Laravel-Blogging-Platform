@@ -29,7 +29,10 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo()
+    {
+        return redirect()->route('admin.users.index', ['users' => User::all()]);
+    }
 
     /**
      * Create a new controller instance.

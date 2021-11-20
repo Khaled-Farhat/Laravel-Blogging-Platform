@@ -22,9 +22,15 @@
 
                 <tr>
                     <th scope="row">{{ $article->id }}</th>
-                    <td>{{ $article->user->name }}</td>
+                    <td><a href="{{ route('admin.users.show', $article->user) }}">{{ $article->user->name }}</a></td>
                     <td>{{ $article->title }}</td>
-                    <td>{{ $article->category->name ?? 'Uncategorized' }}</td>
+                    <td>
+                        @isset($article->category)
+                            <a href="{{ route('admin.categories.show', $article->category) }}">{{ $article->category->name }}</a>
+                        @else
+                            Uncategorized
+                        @endisset
+                    </td>
                     <td class="d-flex flex-row">
                         <a href="{{ route('admin.articles.show', $article) }}" class="btn btn-primary">Show</a>
 

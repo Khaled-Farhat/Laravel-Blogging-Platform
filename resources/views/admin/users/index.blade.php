@@ -1,26 +1,30 @@
-@extends('layouts.admin', ['currentPage' => 'tags'])
+@extends('layouts.admin', ['currentPage' => 'users'])
 
 @section('content')
-    <a class="btn btn-primary" href="{{ route('admin.tags.create') }}">Create Tag</a>
+    <a class="btn btn-primary" href="{{ route('admin.users.create') }}">Create User</a>
+
     <table class="table mt-3">
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Tag Name</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
                 <th scope="col">Options</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($tags as $tag)
+            @foreach($users as $user)
+
                 <tr>
-                    <th scope="row">{{ $tag->id }}</th>
-                    <td>{{ $tag->name }}</td>
+                    <th scope="row">{{ $user->id }}</th>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
                     <td class="d-flex flex-row">
-                        <a href="{{ route('admin.tags.show', $tag) }}" class="btn btn-primary">Show Articles</a>
+                        <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary">Show Articles</a>
 
                         {{ Form::open([
                             'method' => 'GET',
-                            'route' => ['admin.tags.edit', $tag],
+                            'route' => ['admin.users.edit', $user],
                             'class' => 'mx-1'
                             ]) }}
                         {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
@@ -28,7 +32,7 @@
 
                         {{ Form::open([
                                 'method' => 'DELETE',
-                                'route' => ['admin.tags.destroy', $tag],
+                                'route' => ['admin.users.destroy', $user],
                                 'class' => 'mx-1'
                             ]) }}
                         {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}

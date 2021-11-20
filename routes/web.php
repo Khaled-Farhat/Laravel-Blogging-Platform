@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminArticleController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Front\CategoryController;
 use App\Http\Controllers\Front\CommentController;
 use App\Http\Controllers\Front\ArticleController;
@@ -45,5 +46,6 @@ Route::middleware('auth')
         Route::resource('/comments', AdminCommentController::class)->only(['index', 'destroy']);
 
         Route::resource('/tags', AdminTagController::class);
+        Route::resource('users', AdminUserController::class);
     }
 );

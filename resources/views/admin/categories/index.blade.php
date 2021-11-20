@@ -17,7 +17,7 @@
                     <th scope="row">{{ $category->id }}</th>
                     <td>{{ $category->name }}</td>
                     <td class="d-flex flex-row">
-                        <a href="{{ route('admin.categories.show', $category) }}" class="btn btn-primary">Show</a>
+                        <a href="{{ route('admin.categories.show', $category) }}" class="btn btn-primary">Show Articles</a>
 
                         {{ Form::open([
                             'method' => 'GET',
