@@ -28,11 +28,14 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        Tag::factory(15)->create();
+        $tags = Tag::factory(15)->create();
+        $categories = Category::factory(5)->create();
         User::factory(3)->hasArticles(2)->create();
 
-        $tags = Tag::all();
-        Article::all()->each(function($article) use($tags) {
+        Article::all()->each(function($article) use($tags, $categories) {
+            $article->category()->associate($categories->random());
+            $article->save();
+
             $article->tags()->attach($tags->random(rand(1, 5))->pluck('id'));
             $article->comments()->save(Comment::factory()->make());
         });
