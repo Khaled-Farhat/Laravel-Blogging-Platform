@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Article;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreArticleRequest extends FormRequest
 {
@@ -25,6 +26,7 @@ class StoreArticleRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
+            'category_id' => ['nullable', Rule::exists('categories', 'id')],
             'body' => ['required', 'string'],
             'image' => ['sometimes', 'image'],
         ];
