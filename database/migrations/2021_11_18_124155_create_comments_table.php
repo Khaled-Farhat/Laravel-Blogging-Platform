@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->foreignId('article_id')->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->string('body');
+            $table->text('body');
             $table->timestamp('reviewed_at')->nullable();
             $table->timestamps();
         });
