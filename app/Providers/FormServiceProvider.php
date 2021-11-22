@@ -27,15 +27,20 @@ class FormServiceProvider extends ServiceProvider
         Form::component('emailField', 'components.form.email-field', [
             'labelName',
             'inputName',
-            'inputClass' => '',
-            'inputAttributes' => '',
+            'inputAttributes' => [],
         ]);
 
         Form::component('passwordField', 'components.form.password-field', [
             'labelName',
             'inputName',
-            'inputClass' => '',
-            'inputAttributes' => '',
+            'inputAttributes' => [],
+        ]);
+
+        Form::component('selectField', 'components.form.select-field', [
+            'labelName',
+            'inputName',
+            'options',
+            'inputAttributes' => [],
         ]);
 
         Form::component('submitButton', 'components.form.submit-button', [
@@ -47,15 +52,13 @@ class FormServiceProvider extends ServiceProvider
         Form::component('textField', 'components.form.text-field', [
             'labelName',
             'inputName',
-            'inputClass' => '',
-            'inputAttributes' => '',
+            'inputAttributes' => [],
         ]);
 
         Form::component('textareaField', 'components.form.textarea-field', [
             'labelName',
             'inputName',
-            'inputClass' => '',
-            'inputAttributes' => '',
+            'inputAttributes' => [],
         ]);
     }
 }

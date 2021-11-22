@@ -1,9 +1,9 @@
 @php
     if (array_key_exists('class', $inputAttributes)) {
-        $inputAttributes['class'] .= ' cusom-select';
+        $inputAttributes['class'] .= 'custom-select';
     }
     else {
-        $inputAttributes['class'] = ' custom-select';
+        $inputAttributes['class'] = 'custom-select';
     }
 @endphp
 
