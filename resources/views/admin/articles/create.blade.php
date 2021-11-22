@@ -7,6 +7,7 @@
             'method' => 'POST',
             'route' => 'admin.articles.store'
         ]) !!}
+    {!! Form::selectField('Category: ', 'category_id', $categories, ['placeholder' => 'Uncategorized']) !!}
     {!! Form::textField('Title: ', 'title') !!}
     {!! Form::textareaField('Body: ', 'body') !!}
     {!! Form::submitButton('Create Article') !!}
