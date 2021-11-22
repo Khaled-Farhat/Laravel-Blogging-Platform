@@ -7,6 +7,7 @@ use App\Models\Article;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Role;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Role::create([
+            'name' => 'admin',
+        ]);
+
+        Role::create([
+            'name' => 'moderator',
+        ]);
+
         User::create([
+            'role_id' => 1,
             'name' => 'Admin',
             'email' => 'admin@blog.test',
             'email_verified_at' => now(),
