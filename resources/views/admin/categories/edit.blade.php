@@ -5,7 +5,7 @@
                 'method' => 'PUT',
                 'route' => ['admin.categories.update', $category]
             ])!!}
-        {!! Form::textField('Category Name: ', 'name', 'mb-1', 'required') !!}
+        {!! Form::textField('Category Name: ', 'name', ['class' => 'mb-1', 'required']) !!}
         {!! Form::submit('Update  Category', ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}
         </tbody>
