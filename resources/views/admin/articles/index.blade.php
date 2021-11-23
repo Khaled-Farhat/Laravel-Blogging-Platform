@@ -5,9 +5,11 @@
         <h2 class="mb-4">{{ $head }}</h2>
     @endisset
 
-    <a class="btn btn-primary" href="{{ route('admin.articles.create') }}">Create Article</a>
+    @can('create', App\Models\Article::class)
+        <a class="btn btn-primary mb-3" href="{{ route('admin.articles.create') }}">Create Article</a>
+    @endcan
 
-    <table class="table mt-3">
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col">ID</th>

@@ -53,7 +53,7 @@ class ArticlePolicy
      */
     public function update(User $user, Article $article)
     {
-        return ($user->hasRole('Admin') || ($user->id === $article->user->id));
+        return ($user->hasRole('Admin') || $user->hasRole('Moderator') || $user->id === $article->user->id);
     }
 
     /**
@@ -65,7 +65,7 @@ class ArticlePolicy
      */
     public function delete(User $user, Article $article)
     {
-        return ($user->hasRole('Admin') || ($user->id === $article->user->id));
+        return ($user->hasRole('Admin') || $user->hasRole('Moderator') || $user->id === $article->user->id);
     }
 
     /**
