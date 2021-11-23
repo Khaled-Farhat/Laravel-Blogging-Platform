@@ -40,23 +40,29 @@
                         @endisset
                     </td>
                     <td class="d-flex flex-row">
-                        <a href="{{ route('admin.articles.show', $article) }}" class="btn btn-primary">Show</a>
+                        @can('view', $article)
+                            <a href="{{ route('admin.articles.show', $article) }}" class="btn btn-primary">Show</a>
+                        @endcan
 
-                        {{ Form::open([
-                            'method' => 'GET',
-                            'route' => ['admin.articles.edit', $article],
-                            'class' => 'mx-1'
-                            ]) }}
-                        {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
-                        {{ Form::close() }}
-
-                        {{ Form::open([
-                                'method' => 'DELETE',
-                                'route' => ['admin.articles.destroy', $article],
+                        @can('update', $article)
+                            {{ Form::open([
+                                'method' => 'GET',
+                                'route' => ['admin.articles.edit', $article],
                                 'class' => 'mx-1'
-                            ]) }}
-                        {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
-                        {{ Form::close() }}
+                                ]) }}
+                            {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
+                            {{ Form::close() }}
+                        @endcan
+
+                        @can('delete', $article)
+                            {{ Form::open([
+                                    'method' => 'DELETE',
+                                    'route' => ['admin.articles.destroy', $article],
+                                    'class' => 'mx-1'
+                                ]) }}
+                            {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                            {{ Form::close() }}
+                        @endcan
                     </td>
                 </tr>
             @endforeach

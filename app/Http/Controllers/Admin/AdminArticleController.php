@@ -20,6 +20,8 @@ class AdminArticleController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Article::class);
+
         return view('admin.articles.index', ['articles' => Article::all()]);
     }
 
@@ -30,6 +32,8 @@ class AdminArticleController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Article::class);
+
         return view('admin.articles.create', [
             'categories' => Category::pluck('name', 'id'),
         ]);
@@ -65,6 +69,8 @@ class AdminArticleController extends Controller
      */
     public function show(Article $article)
     {
+        $this->authorize('view', $article);
+
         return redirect()->route('articles.show', $article);
     }
 
@@ -76,6 +82,8 @@ class AdminArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        $this->authorize('update', $article);
+
         return view('admin.articles.edit', [
             'article' => $article,
             'categories' => Category::pluck('name', 'id'),
@@ -118,6 +126,8 @@ class AdminArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        $this->authorize('delete', $article);
+
         $article->delete();
 
         return redirect()->back();
