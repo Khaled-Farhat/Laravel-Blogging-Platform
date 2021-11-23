@@ -18,6 +18,8 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Category::class);
+
         return view('admin.categories.index', [
             'categories' => Category::all(),
         ]);
@@ -30,6 +32,8 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Category::class);
+
         return view('admin.categories.create');
     }
 
@@ -54,6 +58,8 @@ class AdminCategoryController extends Controller
      */
     public function show(Category $category)
     {
+        $this->authorize('view', $category);
+
         return view('admin.articles.index', [
             'articles' => $category->articles,
             'head' => 'Showing articles from category: ' . $category->name,
@@ -68,7 +74,11 @@ class AdminCategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit', ['category' => $category]);
+        $this->authorize('update', $category);
+
+        return view('admin.categories.edit', [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -93,6 +103,8 @@ class AdminCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $this->authorize('delete', $category);
+
         $category->delete();
 
         return redirect()->back();

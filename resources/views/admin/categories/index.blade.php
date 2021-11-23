@@ -1,9 +1,11 @@
 @extends('layouts.admin', ['currentPage' => 'categories'])
 
 @section('content')
-    <a class="btn btn-primary" href="{{ route('admin.categories.create') }}">Create Category</a>
+    @can('create', App\Models\Category::class)
+        <a class="btn btn-primary mb-3" href="{{ route('admin.categories.create') }}">Create Category</a>
+    @endcan
 
-    <table class="table mt-3">
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -15,25 +17,31 @@
             @foreach($categories as $category)
                 <tr>
                     <th scope="row">{{ $category->id }}</th>
-                    <td>{{ $category->name }}</td>
-                    <td class="d-flex flex-row">
-                        <a href="{{ route('admin.categories.show', $category) }}" class="btn btn-primary">Show Articles</a>
+                    <td scope="row">{{ $category->name }}</td>
+                    <td scope="row" class="d-flex flex-row">
+                        @can('view', $category)
+                            <a href="{{ route('admin.categories.show', $category) }}" class="btn btn-primary">Show Articles</a>
+                        @endcan
 
-                        {{ Form::open([
-                            'method' => 'GET',
-                            'route' => ['admin.categories.edit', $category],
-                            'class' => 'mx-1'
-                            ]) }}
-                        {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
-                        {{ Form::close() }}
-
-                        {{ Form::open([
-                                'method' => 'DELETE',
-                                'route' => ['admin.categories.destroy', $category],
+                        @can('update', $category)
+                            {{ Form::open([
+                                'method' => 'GET',
+                                'route' => ['admin.categories.edit', $category],
                                 'class' => 'mx-1'
-                            ]) }}
-                        {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
-                        {{ Form::close() }}
+                                ]) }}
+                            {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
+                            {{ Form::close() }}
+                        @endcan
+
+                        @can('delete', $category)
+                            {{ Form::open([
+                                    'method' => 'DELETE',
+                                    'route' => ['admin.categories.destroy', $category],
+                                    'class' => 'mx-1'
+                                ]) }}
+                            {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                            {{ Form::close() }}
+                        @endcan
                     </td>
                 </tr>
             @endforeach
