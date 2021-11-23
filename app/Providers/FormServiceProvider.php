@@ -30,6 +30,12 @@ class FormServiceProvider extends ServiceProvider
             'inputAttributes' => [],
         ]);
 
+        Form::component('fileField', 'components.form.file-field', [
+            'labelName',
+            'inputName',
+            'inputAttributes' => [],
+        ]);
+
         Form::component('passwordField', 'components.form.password-field', [
             'labelName',
             'inputName',
