@@ -1,12 +1,15 @@
 @extends('layouts.admin', ['currentPage' => 'users'])
 
 @section('content')
-    <a class="btn btn-primary" href="{{ route('admin.users.create') }}">Create User</a>
+    @can('create', App\Models\User::class)
+        <a class="btn btn-primary mb-3" href="{{ route('admin.users.create') }}">Create User</a>
+    @endcan
 
-    <table class="table mt-3">
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col">ID</th>
+                <th scope="col">Role</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Options</th>
@@ -17,26 +20,33 @@
 
                 <tr>
                     <th scope="row">{{ $user->id }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td class="d-flex flex-row">
-                        <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary">Show Articles</a>
+                    <td scope="row">{{ $user->role->name }}</th>
+                    <td scope="row">{{ $user->name }}</td>
+                    <td scope="row">{{ $user->email }}</td>
+                    <td scope="row" class="d-flex flex-row">
+                        @can('view', $user)
+                            <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary">Show Articles</a>
+                        @endcan
 
-                        {{ Form::open([
-                            'method' => 'GET',
-                            'route' => ['admin.users.edit', $user],
-                            'class' => 'mx-1'
-                            ]) }}
-                        {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
-                        {{ Form::close() }}
-
-                        {{ Form::open([
-                                'method' => 'DELETE',
-                                'route' => ['admin.users.destroy', $user],
+                        @can('update', $user)
+                            {{ Form::open([
+                                'method' => 'GET',
+                                'route' => ['admin.users.edit', $user],
                                 'class' => 'mx-1'
-                            ]) }}
-                        {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
-                        {{ Form::close() }}
+                                ]) }}
+                            {{ Form::submit('Edit', ['class' => 'btn btn-warning']) }}
+                            {{ Form::close() }}
+                        @endcan
+
+                        @can('delete', $user)
+                            {{ Form::open([
+                                    'method' => 'DELETE',
+                                    'route' => ['admin.users.destroy', $user],
+                                    'class' => 'mx-1'
+                                ]) }}
+                            {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                            {{ Form::close() }}
+                        @endcan
                     </td>
                 </tr>
             @endforeach

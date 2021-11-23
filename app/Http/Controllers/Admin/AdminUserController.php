@@ -18,6 +18,8 @@ class AdminUserController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', User::class);
+
         return view('admin.users.index', ['users' => User::all()]);
     }
 
@@ -28,6 +30,8 @@ class AdminUserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return view('admin.users.create');
     }
 
@@ -52,6 +56,8 @@ class AdminUserController extends Controller
      */
     public function show(User $user)
     {
+        $this->authorize('view', $user);
+
         return view('admin.articles.index', [
             'articles' => $user->articles,
             'head' => 'Showing articles of user: ' . $user->name,
@@ -66,6 +72,8 @@ class AdminUserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
+
         return view('admin.users.edit', ['user' => $user]);
     }
 
@@ -91,6 +99,8 @@ class AdminUserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('delete', $user);
+
         $user->delete();
 
         return redirect()->back();
