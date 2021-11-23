@@ -17,6 +17,8 @@ class AdminTagController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Tag::class);
+
         return view('admin.tags.index', ['tags' => Tag::all()]);
     }
 
@@ -27,6 +29,8 @@ class AdminTagController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Tag::class);
+
         return view('admin.tags.create');
     }
 
@@ -51,6 +55,8 @@ class AdminTagController extends Controller
      */
     public function show(Tag $tag)
     {
+        $this->authorize('view', Tag::class);
+
         return view('admin.articles.index', [
             'articles' => $tag->articles,
             'head' => 'Showing articles with tag: ' . $tag->name,
@@ -65,6 +71,8 @@ class AdminTagController extends Controller
      */
     public function edit(Tag $tag)
     {
+        $this->authorize('update', $tag);
+
         return view('admin.tags.edit', ['tag' => $tag]);
     }
 
@@ -90,6 +98,8 @@ class AdminTagController extends Controller
      */
     public function destroy(Tag $tag)
     {
+        $this->authorize('delete', $tag);
+
         $tag->delete();
 
         return redirect()->back();
