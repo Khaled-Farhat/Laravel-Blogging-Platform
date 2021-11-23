@@ -5,10 +5,12 @@
 
     {!! Form::open([
             'method' => 'POST',
-            'route' => 'admin.articles.store'
+            'route' => 'admin.articles.store',
+            'files' => true
         ]) !!}
-    {!! Form::selectField('Category: ', 'category_id', $categories, ['placeholder' => 'Uncategorized']) !!}
     {!! Form::textField('Title: ', 'title') !!}
+    {!! Form::selectField('Category: ', 'category_id', $categories, ['placeholder' => 'Uncategorized']) !!}
+    {!! Form::fileField('Image: ', 'image') !!}
     {!! Form::textareaField('Body: ', 'body') !!}
     {!! Form::submitButton('Create Article') !!}
     {!! Form::close() !!}

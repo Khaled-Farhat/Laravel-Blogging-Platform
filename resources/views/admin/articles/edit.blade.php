@@ -1,13 +1,23 @@
 @extends('layouts.admin', ['currentPage' => 'articles'])
 
 @section('content')
-    <h1 class="mb-3">Create Article</h1>
+    <h1 class="mb-3">Edit Article</h1>
 
     {!! Form::model($article, [
             'method' => 'PUT',
-            'route' => ['admin.articles.update', $article]
+            'route' => ['admin.articles.update', $article],
+            'files' => true
         ]) !!}
     {!! Form::textField('Title: ', 'title') !!}
+    {!! Form::selectField('Category: ', 'category_id', $categories, ['placeholder' => 'Uncategorized']) !!}
+
+    @if($article->image()->exists())
+        <div class="mt-3">
+            <img src="{{ $article->image->url() }}" style="max-height: 200px;">
+        </div>
+    @endif
+    {!! Form::fileField('Update Image: ', 'image') !!}
+
     {!! Form::textareaField('Body: ', 'body') !!}
     {!! Form::submitButton('Update Article') !!}
     {!! Form::close() !!}

@@ -5,7 +5,9 @@
 
 @section('main')
     <div class="card mb-3">
-        <img src="https://picsum.photos/1000/1000" class="img-fluid card-img-top" style="max-height: 250px; object-fit: cover;">
+        @if($article->image()->exists())
+            <img src="{{ $article->image->url() }}" class="img-fluid card-img-top" style="max-height: 250px; object-fit: cover;">
+        @endif
         <div class="card-body">
             <h4 class="card-title">{{ $article->title }}</h4>
             <h6 class="card-subtitle text-muted">

@@ -13,8 +13,17 @@ class Article extends Model
         'title',
         'category_id',
         'body',
-        'image_path',
+        'image_id',
     ];
+
+    function delete()
+    {
+        if ($this->image()->exists()) {
+            $this->image->delete();
+        }
+
+        parent::delete();
+    }
 
     public function user()
     {
@@ -34,5 +43,10 @@ class Article extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

@@ -28,7 +28,7 @@ class StoreArticleRequest extends FormRequest
             'title' => ['required', 'string'],
             'category_id' => ['nullable', Rule::exists('categories', 'id')],
             'body' => ['required', 'string'],
-            'image' => ['sometimes', 'image'],
+            'image' => ['sometimes', 'nullable', 'image'],
         ];
     }
 }

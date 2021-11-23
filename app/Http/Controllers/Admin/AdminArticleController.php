@@ -7,6 +7,7 @@ use App\Http\Requests\Article\StoreArticleRequest;
 use App\Http\Requests\Article\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -42,8 +43,16 @@ class AdminArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        $validated = $request->validated();
-        auth()->user()->articles()->create($validated);
+        $data = $request->validated();
+        unset($data['image']);
+
+        $article = auth()->user()->articles()->create($data);
+
+        if ($request->hasFile('image')) {
+            $image_path = $request->image->store('images');
+            $image = new Image(['path' => $image_path]);
+            $article->image()->save($image);
+        }
 
         return redirect()->route('admin.articles.index');
     }
@@ -67,7 +76,10 @@ class AdminArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('admin.articles.edit', ['article' => $article]);
+        return view('admin.articles.edit', [
+            'article' => $article,
+            'categories' => Category::pluck('name', 'id'),
+        ]);
     }
 
     /**
@@ -79,7 +91,21 @@ class AdminArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        $article->update($request->validated());
+        $data = $request->validated();
+        unset($data['image']);
+
+        $article->update($data);
+
+        if ($request->hasFile('image')) {
+            $image_path = $request->image->store('images');
+            $image = new Image(['path' => $image_path]);
+
+            if ($article->image()->exists()) {
+                $article->image->delete();
+            }
+
+            $article->image()->save($image);
+        }
 
         return redirect()->route('admin.articles.index');
     }

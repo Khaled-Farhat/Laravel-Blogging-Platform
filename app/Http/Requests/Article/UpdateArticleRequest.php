@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Article;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateArticleRequest extends FormRequest
 {
@@ -25,8 +26,9 @@ class UpdateArticleRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
+            'category_id' => ['nullable', Rule::exists('categories', 'id')],
             'body' => ['required', 'string'],
-            'image' => ['sometimes', 'image'],
+            'image' => ['sometimes', 'nullable', 'image'],
         ];
     }
 }

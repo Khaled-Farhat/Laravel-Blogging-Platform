@@ -13,6 +13,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Author</th>
                 <th scope="col">Title</th>
+                <th scope="col">Image</th>
                 <th scope="col">Category</th>
                 <th scope="col">Options</th>
             </tr>
@@ -24,6 +25,13 @@
                     <th scope="row">{{ $article->id }}</th>
                     <td><a href="{{ route('admin.users.show', $article->user) }}">{{ $article->user->name }}</a></td>
                     <td>{{ $article->title }}</td>
+                    <td>
+                        @if($article->image()->exists())
+                            <img src="{{ $article->image->url() }}" class="img-fluid card-img-top" style="max-height: 30px; object-fit: cover;">
+                        @else
+                            No image
+                        @endif
+                    </td>
                     <td>
                         @isset($article->category)
                             <a href="{{ route('admin.categories.show', $article->category) }}">{{ $article->category->name }}</a>
