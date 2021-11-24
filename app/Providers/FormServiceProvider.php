@@ -52,7 +52,7 @@ class FormServiceProvider extends ServiceProvider
         Form::component('submitButton', 'components.form.submit-button', [
             'buttonText' => 'Submit',
             'buttonType' => 'primary',
-            'buttonClass' => '',
+            'inputAttributes' => [],
         ]);
 
         Form::component('textField', 'components.form.text-field', [
