@@ -42,6 +42,11 @@ class Comment extends Model
         $this->save();
     }
 
+    public function wasApproved()
+    {
+        return !$this->isPendingReview();
+    }
+
     public function isPendingReview()
     {
         return is_null($this->reviewed_at);

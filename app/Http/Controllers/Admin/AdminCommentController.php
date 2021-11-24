@@ -15,7 +15,16 @@ class AdminCommentController extends Controller
      */
     public function index()
     {
-        return view('admin.comments.index', ['comments' => Comment::withPendingReview()->get()]);
+        $this->authorize('viewAny', Comment::class);
+
+        $comments = Comment::withPendingReview()->get();
+        $comments = $comments->filter(function($comment) {
+            return auth()->user()->can('view', $comment);
+        });
+
+        return view('admin.comments.index', [
+            'comments' => $comments,
+        ]);
     }
 
     /**
@@ -27,6 +36,8 @@ class AdminCommentController extends Controller
      */
     public function approve(Request $request, Comment $comment)
     {
+        $this->authorize('approve', $comment);
+
         $comment->approve();
 
         return redirect()->back();
@@ -40,6 +51,8 @@ class AdminCommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
+        $this->authorize('delete', $comment);
+
         $comment->delete();
 
         return redirect()->back();

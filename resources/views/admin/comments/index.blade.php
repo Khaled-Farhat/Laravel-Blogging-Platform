@@ -5,10 +5,10 @@
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col-2">Author</th>
+                <th scope="col">Author</th>
                 <th scope="col">Comment content</th>
                 <th scope="col">Article</th>
-                <th scope="col-3">Options</th>
+                <th scope="col">Options</th>
             </tr>
         </thead>
         <tbody>
@@ -20,30 +20,37 @@
                     <td>{{ $comment->article->title }}</td>
 
                     <td class="d-flex flex-row">
-                        {!! Form::open([
-                                'method' => 'GET',
-                                'route' => ['articles.show', $comment->article],
-                                'class' => 'mr-1'
-                            ]) !!}
-                        {!! Form::submitButton('Show Article') !!}
-                        {!! Form::close() !!}
-
-                        @if($comment->isPendingReview())
+                        @can('view', $comment->article)
                             {!! Form::open([
-                                    'method' => 'PATCH',
-                                    'route' => ['admin.comments.approve', $comment],
+                                    'method' => 'GET',
+                                    'route' => ['articles.show', $comment->article],
                                     'class' => 'mr-1'
                                 ]) !!}
-                            {!! Form::submitButton('Approve', 'success') !!}
+                            {!! Form::submitButton('Show Article') !!}
                             {!! Form::close() !!}
+                        @endcan
+
+
+                        @if($comment->isPendingReview())
+                            @can('approve', $comment)
+                                {!! Form::open([
+                                        'method' => 'PATCH',
+                                        'route' => ['admin.comments.approve', $comment],
+                                        'class' => 'mr-1'
+                                    ]) !!}
+                                {!! Form::submitButton('Approve', 'success') !!}
+                                {!! Form::close() !!}
+                            @endcan
                         @endif
 
-                        {!! Form::open([
-                                'method' => 'DELETE',
-                                'route' => ['admin.comments.destroy', $comment],
-                            ]) !!}
-                        {!! Form::submitButton('Delete Comment', 'danger') !!}
-                        {!! Form::close() !!}
+                        @can('delete', $comment)
+                            {!! Form::open([
+                                    'method' => 'DELETE',
+                                    'route' => ['admin.comments.destroy', $comment],
+                                ]) !!}
+                            {!! Form::submitButton('Delete Comment', 'danger') !!}
+                            {!! Form::close() !!}
+                        @endcan
                     </td>
                 </tr>
             @endforeach
