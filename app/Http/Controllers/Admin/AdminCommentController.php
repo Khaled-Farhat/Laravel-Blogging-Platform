@@ -40,6 +40,7 @@ class AdminCommentController extends Controller
 
         $comment->approve();
 
+        session()->flash('alert.success', 'The comment was approved successfully');
         return redirect()->back();
     }
 
@@ -55,6 +56,7 @@ class AdminCommentController extends Controller
 
         $comment->delete();
 
+        session()->flash('alert.success', 'The comment was deleted successfully');
         return redirect()->back();
     }
 }

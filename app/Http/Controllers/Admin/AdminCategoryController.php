@@ -47,6 +47,7 @@ class AdminCategoryController extends Controller
     {
         Category::create($request->validated());
 
+        session()->flash('alert.success', 'The category was created successfully');
         return redirect()->route('admin.categories.index');
     }
 
@@ -92,6 +93,7 @@ class AdminCategoryController extends Controller
     {
         $category->update($request->validated());
 
+        session()->flash('alert.success', 'The category was updated successfully');
         return redirect()->route('admin.categories.index');
     }
 
@@ -107,6 +109,7 @@ class AdminCategoryController extends Controller
 
         $category->delete();
 
+        session()->flash('alert.success', 'The category was deleted successfully');
         return redirect()->back();
     }
 }

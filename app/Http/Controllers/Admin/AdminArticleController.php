@@ -22,7 +22,9 @@ class AdminArticleController extends Controller
     {
         $this->authorize('viewAny', Article::class);
 
-        return view('admin.articles.index', ['articles' => Article::all()]);
+        return view('admin.articles.index', [
+            'articles' => Article::all()
+        ]);
     }
 
     /**
@@ -58,8 +60,7 @@ class AdminArticleController extends Controller
             $article->image()->save($image);
         }
 
-        $request->session()->flash('alert.success', 'The article was created successfully');
-
+        session()->flash('alert.success', 'The article was created successfully');
         return redirect()->route('admin.articles.index');
     }
 
@@ -117,6 +118,7 @@ class AdminArticleController extends Controller
             $article->image()->save($image);
         }
 
+        session()->flash('alert.success', 'The article was updated successfully');
         return redirect()->route('admin.articles.index');
     }
 
@@ -132,6 +134,7 @@ class AdminArticleController extends Controller
 
         $article->delete();
 
+        session()->flash('alert.success', 'The article was deleted successfully');
         return redirect()->back();
     }
 }

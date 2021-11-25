@@ -19,7 +19,9 @@ class AdminTagController extends Controller
     {
         $this->authorize('viewAny', Tag::class);
 
-        return view('admin.tags.index', ['tags' => Tag::all()]);
+        return view('admin.tags.index', [
+            'tags' => Tag::all()
+        ]);
     }
 
     /**
@@ -44,6 +46,7 @@ class AdminTagController extends Controller
     {
         Tag::create($request->validated());
 
+        session()->flash('alert.success', 'The tag was created successfully');
         return redirect()->route('admin.tags.index');
     }
 
@@ -73,7 +76,9 @@ class AdminTagController extends Controller
     {
         $this->authorize('update', $tag);
 
-        return view('admin.tags.edit', ['tag' => $tag]);
+        return view('admin.tags.edit', [
+            'tag' => $tag
+        ]);
     }
 
     /**
@@ -87,6 +92,7 @@ class AdminTagController extends Controller
     {
         $tag->update($request->validated());
 
+        session()->flash('alert.success', 'The tag was updated successfully');
         return redirect()->route('admin.tags.index');
     }
 
@@ -102,6 +108,7 @@ class AdminTagController extends Controller
 
         $tag->delete();
 
+        session()->flash('alert.success', 'The tag was deleted successfully');
         return redirect()->back();
     }
 }

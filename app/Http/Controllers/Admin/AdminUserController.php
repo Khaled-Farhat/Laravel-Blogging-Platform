@@ -20,7 +20,9 @@ class AdminUserController extends Controller
     {
         $this->authorize('viewAny', User::class);
 
-        return view('admin.users.index', ['users' => User::all()]);
+        return view('admin.users.index', [
+            'users' => User::all()
+        ]);
     }
 
     /**
@@ -45,6 +47,7 @@ class AdminUserController extends Controller
     {
         User::create($request->validated());
 
+        session()->flash('alert.success', 'The user was created successfully');
         return redirect()->route('admin.users.index');
     }
 
@@ -74,7 +77,9 @@ class AdminUserController extends Controller
     {
         $this->authorize('update', $user);
 
-        return view('admin.users.edit', ['user' => $user]);
+        return view('admin.users.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -88,6 +93,7 @@ class AdminUserController extends Controller
     {
         $user->update($request->validated());
 
+        session()->flash('alert.success', 'The user was updated successfully');
         return redirect()->route('admin.users.index');
     }
 
@@ -103,6 +109,7 @@ class AdminUserController extends Controller
 
         $user->delete();
 
+        session()->flash('alert.success', 'The user was deleted successfully');
         return redirect()->back();
     }
 }
