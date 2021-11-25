@@ -47,4 +47,6 @@
             @endforeach
         </tbody>
     </table>
+
+    {{ $tags->links() }}
 @endsection

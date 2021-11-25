@@ -20,7 +20,7 @@ class AdminTagController extends Controller
         $this->authorize('viewAny', Tag::class);
 
         return view('admin.tags.index', [
-            'tags' => Tag::all()
+            'tags' => Tag::paginate(7),
         ]);
     }
 
@@ -58,10 +58,10 @@ class AdminTagController extends Controller
      */
     public function show(Tag $tag)
     {
-        $this->authorize('view', Tag::class);
+        $this->authorize('view', $tag);
 
         return view('admin.articles.index', [
-            'articles' => $tag->articles,
+            'articles' => $tag->articles()->paginate(7),
             'head' => 'Showing articles with tag: ' . $tag->name,
         ]);
     }
@@ -77,7 +77,7 @@ class AdminTagController extends Controller
         $this->authorize('update', $tag);
 
         return view('admin.tags.edit', [
-            'tag' => $tag
+            'tag' => $tag,
         ]);
     }
 

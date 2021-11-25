@@ -23,7 +23,7 @@ class AdminArticleController extends Controller
         $this->authorize('viewAny', Article::class);
 
         return view('admin.articles.index', [
-            'articles' => Article::all()
+            'articles' => Article::paginate(7),
         ]);
     }
 

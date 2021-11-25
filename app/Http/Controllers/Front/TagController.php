@@ -18,7 +18,7 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         return view('articles.index', [
-            'articles' => $tag->articles,
+            'articles' => $tag->articles()->paginate(7),
             'categories' => Category::all(),
             'tags' => Tag::all(),
             'head' => 'Showing articles with tag: ' . $tag->name,

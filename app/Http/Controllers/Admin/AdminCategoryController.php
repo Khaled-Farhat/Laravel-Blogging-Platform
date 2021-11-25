@@ -21,7 +21,7 @@ class AdminCategoryController extends Controller
         $this->authorize('viewAny', Category::class);
 
         return view('admin.categories.index', [
-            'categories' => Category::all(),
+            'categories' => Category::paginate(7),
         ]);
     }
 
@@ -62,7 +62,7 @@ class AdminCategoryController extends Controller
         $this->authorize('view', $category);
 
         return view('admin.articles.index', [
-            'articles' => $category->articles,
+            'articles' => $category->articles()->paginate(7),
             'head' => 'Showing articles from category: ' . $category->name,
         ]);
     }
@@ -78,7 +78,7 @@ class AdminCategoryController extends Controller
         $this->authorize('update', $category);
 
         return view('admin.categories.edit', [
-            'category' => $category
+            'category' => $category,
         ]);
     }
 

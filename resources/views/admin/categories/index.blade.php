@@ -17,8 +17,8 @@
             @foreach($categories as $category)
                 <tr>
                     <th scope="row">{{ $category->id }}</th>
-                    <td scope="row">{{ $category->name }}</td>
-                    <td scope="row" class="d-flex flex-row">
+                    <td>{{ $category->name }}</td>
+                    <td class="d-flex flex-row">
                         @can('view', $category)
                             <a href="{{ route('admin.categories.show', $category) }}" class="btn btn-primary">Show Articles</a>
                         @endcan
@@ -47,4 +47,6 @@
             @endforeach
         </tbody>
     </table>
+
+    {{ $categories->links() }}
 @endsection

@@ -18,7 +18,7 @@ class ArticleController extends Controller
     public function index()
     {
         return view('articles.index', [
-            'articles' => Article::all(),
+            'articles' => Article::paginate(7),
             'categories' => Category::all(),
             'tags' => Tag::all(),
         ]);
@@ -33,6 +33,7 @@ class ArticleController extends Controller
     public function show(Article $article) {
         return view('articles.show', [
             'article' => $article,
+            'comments' => $article->comments()->paginate(5),
             'categories' => Category::all(),
             'tags' => Tag::all(),
         ]);

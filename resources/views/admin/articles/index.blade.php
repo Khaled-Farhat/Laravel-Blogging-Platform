@@ -13,16 +13,15 @@
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Author</th>
-                <th scope="col">Title</th>
-                <th scope="col">Image</th>
-                <th scope="col">Category</th>
-                <th scope="col">Options</th>
+                <td scope="col">Author</th>
+                <td scope="col">Title</th>
+                <td scope="col">Image</th>
+                <td scope="col">Category</th>
+                <td scope="co">Options</th>
             </tr>
         </thead>
         <tbody>
             @foreach($articles as $article)
-
                 <tr>
                     <th scope="row">{{ $article->id }}</th>
                     <td><a href="{{ route('admin.users.show', $article->user) }}">{{ $article->user->name }}</a></td>
@@ -70,4 +69,6 @@
             @endforeach
         </tbody>
     </table>
+
+    {{ $articles->links() }}
 @endsection

@@ -30,7 +30,7 @@
             <div class="card-body">
                 <h4 class="card-title mb-4">Comments</h4>
 
-                @foreach($article->comments as $comment)
+                @foreach($comments as $comment)
                     <div class="card mb-3">
                         <div class="card-body">
                             <h6 class="card-title">{{ $comment->name }}</h6>
@@ -41,6 +41,8 @@
                         </div>
                     </div>
                 @endforeach
+
+                {{ $comments->links() }}
 
                 <div class="card">
                     <div class="card-body">
