@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
 
         $tags = Tag::factory(15)->create();
         $categories = Category::factory(5)->create();
-        User::factory(3)->hasArticles(2)->create();
+        User::factory(5)->hasArticles(10)->create();
 
         Article::all()->each(function($article) use($tags, $categories) {
             $article->category()->associate($categories->random());
