@@ -58,6 +58,8 @@ class AdminArticleController extends Controller
             $article->image()->save($image);
         }
 
+        $request->session()->flash('alert.success', 'The article was created successfully');
+
         return redirect()->route('admin.articles.index');
     }
 
