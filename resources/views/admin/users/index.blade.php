@@ -20,10 +20,10 @@
 
                 <tr>
                     <th scope="row">{{ $user->id }}</th>
-                    <td scope="row">{{ $user->role->name }}</th>
-                    <td scope="row">{{ $user->name }}</td>
-                    <td scope="row">{{ $user->email }}</td>
-                    <td scope="row" class="d-flex flex-row">
+                    <td>{{ $user->role->name }}</th>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td class="d-flex flex-row">
                         @can('view', $user)
                             <a href="{{ route('admin.users.show', $user) }}" class="btn btn-primary">Show Articles</a>
                         @endcan
