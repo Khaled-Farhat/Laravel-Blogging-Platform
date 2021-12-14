@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -49,5 +49,12 @@
             @yield('content')
         </div>
     </div>
+
+    @if(session()->has('alert.success'))
+        <x-alert.toast message="{{ session('alert.success') }}" color="success" textWhite></x-alert.toast>
+    @endif
 </body>
+<script>
+    $('.toast').toast({"autohide": false}).toast('show');
+</script>
 </html>
