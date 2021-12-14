@@ -23,7 +23,9 @@ use App\Http\Controllers\Front\UserController;
 |
 */
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 
 Route::redirect('/', '/articles')->name('home');
 
