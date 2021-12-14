@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Scopes\LatestScope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +17,13 @@ class Article extends Model
         'body',
         'image_id',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new LatestScope);
+    }
 
     function delete()
     {

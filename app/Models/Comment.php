@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\LatestScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +26,8 @@ class Comment extends Model
         static::addGlobalScope('reviewed', function(Builder $builder) {
             $builder->whereNotNull('reviewed_at');
         });
+
+        static::addGlobalScope(new LatestScope);
     }
 
     public function scopeOnlyPendingReview($query)
