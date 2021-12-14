@@ -19,7 +19,7 @@ class CommentController extends Controller
     {
         Comment::create($request->validated());
 
-        session()->flash('alert.success', 'The comment was created successfully');
+        session()->flash('alert.success', 'The comment was submitted successfully and is waiting approval');
         return redirect()->back();
     }
 }
