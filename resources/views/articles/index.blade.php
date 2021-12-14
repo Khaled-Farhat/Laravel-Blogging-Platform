@@ -14,8 +14,8 @@
                 <img src="{{ $article->image->url() }}" class="img-fluid card-img-top" style="max-height: 250px; object-fit: cover;">
             @endif
             <div class="card-body">
-                <h5 class="card-title">{{ $article->title }}</h5>
-                <h6 class="card-subtitle text-muted">
+                <h3 class="card-title">{{ $article->title }}</h3>
+                <h6 class="card-subtitle text-muted mt-3">
                     Posted {{ $article->created_at->diffForHumans() }}
                     by <a href="{{ route('users.show', $article->user) }}">{{ $article->user->name }}</a>
                     @isset($article->category)
@@ -23,13 +23,27 @@
                     @endisset
                 </h6>
 
-                <div class="my-3">
-                    @foreach($article->tags as $tag)
-                        <a class="btn-sm btn-light" href="{{ route('tags.show', $tag) }}">{{ $tag->name }}</a>
-                    @endforeach
-                </div>
+                @isset($article->tags)
+                    <div class="mt-2">
+                        <div class="d-inline card-subtitle text-muted mr-2">Tags:</div>
 
-                <p class="card-text">{{ Str::limit($article->body, 256) }}</p>
+                        @foreach($article->tags as $tag)
+                            <a class="btn-sm btn-light" href="{{ route('tags.show', $tag) }}">{{ $tag->name }}</a>
+                        @endforeach
+                    </div>
+                @endisset
+
+                <h6 class="mt-2 card-subtitle text-muted">
+                    {{ $article->comments_count }}
+
+                    @if($article->comments_count == 1)
+                        Comment
+                    @else
+                        Commments
+                    @endif
+                </h6>
+
+                <p class="card-text mt-4">{{ Str::limit($article->body, 256) }}</p>
                 <a href="{{ route('articles.show', $article) }}" class="btn btn-primary">Continue Reading</a>
             </div>
         </div>

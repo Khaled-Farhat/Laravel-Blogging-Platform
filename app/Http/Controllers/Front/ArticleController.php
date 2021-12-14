@@ -18,7 +18,7 @@ class ArticleController extends Controller
     public function index()
     {
         return view('articles.index', [
-            'articles' => Article::paginate(7),
+            'articles' => Article::withCount('comments')->paginate(7),
             'categories' => Category::all(),
             'tags' => Tag::all(),
         ]);
