@@ -25,7 +25,7 @@
                 <tr>
                     <th scope="row">{{ $article->id }}</th>
                     <td><a href="{{ route('admin.users.show', $article->user) }}">{{ $article->user->name }}</a></td>
-                    <td>{{ $article->title }}</td>
+                    <td><a href="{{ route('admin.articles.show', $article) }}">{{ $article->title }}</a></td>
                     <td>
                         @if(!is_null($article->image))
                             <img src="{{ $article->image->url() }}" class="img-fluid card-img-top" style="max-height: 30px; object-fit: cover;">
@@ -42,7 +42,7 @@
                     </td>
                     <td class="d-flex flex-row">
                         @can('view', $article)
-                            <a href="{{ route('admin.articles.show', $article) }}" class="btn btn-primary">Show</a>
+                            <a href="{{ route('admin.articles.comments.index', $article) }}" class="btn btn-primary">Comments</a>
                         @endcan
 
                         @can('update', $article)

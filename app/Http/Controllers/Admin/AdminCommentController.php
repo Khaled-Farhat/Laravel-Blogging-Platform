@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -15,12 +16,36 @@ class AdminCommentController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Comment::class);
+        $comments = Comment::with(['article:id,title'])
+            ->withPendingReview()
+            ->get()
+            ->filter(function($comment) {
+                return auth()->user()->can('view', $comment);
+            })->paginate(7);
 
-        $comments = Comment::withPendingReview()->get();
-        $comments = $comments->filter(function($comment) {
-            return auth()->user()->can('view', $comment);
-        });
+        return view('admin.comments.index', [
+            'comments' => $comments,
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function articleIndex(Article $article)
+    {
+        $this->authorize('view', $article);
+
+        $comments = $article
+            ->comments()
+            ->with(['article:id,title'])
+            ->withPendingReview()
+            ->get()
+            ->filter(function($comment) {
+                return auth()->user()->can('view', $comment);
+            })->paginate(7);
 
         return view('admin.comments.index', [
             'comments' => $comments,

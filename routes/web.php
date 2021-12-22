@@ -44,6 +44,7 @@ Route::middleware('auth')
         Route::resource('/articles', AdminArticleController::class);
         Route::resource('/categories', AdminCategoryController::class);
 
+        Route::get('/articles/{article}/comments', [AdminCommentController::class, 'articleIndex'])->name('articles.comments.index');
         Route::match(['PUT', 'PATCH'], '/comments/{comment}', [AdminCommentController::class, 'approve'])->name('comments.approve');
         Route::resource('/comments', AdminCommentController::class)->only(['index', 'destroy']);
 
