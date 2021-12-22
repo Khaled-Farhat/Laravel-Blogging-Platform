@@ -49,6 +49,7 @@ class AdminCommentController extends Controller
 
         return view('admin.comments.index', [
             'comments' => $comments,
+            'head' => 'Showing comments of article: ' . $article->title,
         ]);
     }
 

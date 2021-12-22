@@ -1,6 +1,10 @@
 @extends('layouts.admin', ['currentPage' => 'comments'])
 
 @section('content')
+    @isset($head)
+        <h2 class="mb-4">{{ $head }}</h2>
+    @endisset
+
     @if($comments->isEmpty())
         <h1>No Comment Exists</h1>
     @else
