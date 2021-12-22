@@ -10,6 +10,11 @@
     {!! Form::token() !!}
     {!! Form::textField('Name: ', 'name') !!}
     {!! Form::emailField('Email: ', 'email') !!}
+
+    @can('changeRole', $user)
+        {!! Form::selectField('Role: ', 'role_id', $roles) !!}
+    @endcan
+
     {!! Form::passwordField('Password: ', 'password') !!}
     {!! Form::passwordField('Password confirmation: ', 'password_confirmation') !!}
     {!! Form::submitButton('Edit User') !!}

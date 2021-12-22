@@ -15,6 +15,10 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
+        if (isset($this->role_id) && $this->user()->can('changeRole', $this->user) == false) {
+            return false;
+        }
+
         return $this->user()->can('update', $this->user);
     }
 
@@ -28,6 +32,7 @@ class UpdateUserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)],
+            'role_id' => ['sometimes', Rule::exists('roles', 'id')],
             'password' => ['sometimes', 'nullable', 'string', 'min:8', 'confirmed'],
         ];
     }

@@ -90,4 +90,16 @@ class UserPolicy
     {
         return $user->hasRole('Admin');
     }
+
+    /**
+     * Determine whether the user can change the role.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function changeRole(User $user, User $model)
+    {
+        return $user->hasRole('Admin');
+    }
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -36,7 +38,9 @@ class AdminUserController extends Controller
     {
         $this->authorize('create', User::class);
 
-        return view('admin.users.create');
+        return view('admin.users.create', [
+            'roles' => Role::pluck('name', 'id'),
+        ]);
     }
 
     /**
@@ -88,6 +92,7 @@ class AdminUserController extends Controller
 
         return view('admin.users.edit', [
             'user' => $user,
+            'roles' => Role::pluck('name', 'id'),
         ]);
     }
 

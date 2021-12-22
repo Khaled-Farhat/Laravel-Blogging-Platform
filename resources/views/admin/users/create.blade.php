@@ -9,6 +9,7 @@
         ]) !!}
     {!! Form::textField('Name: ', 'name') !!}
     {!! Form::emailField('Email: ', 'email') !!}
+    {!! Form::selectField('Role: ', 'role_id', $roles) !!}
     {!! Form::passwordField('Password: ', 'password') !!}
     {!! Form::passwordField('Password confirmation: ', 'password_confirmation') !!}
     {!! Form::submitButton('Create User') !!}
