@@ -1,7 +1,7 @@
 @php
     $inputAttributes['type'] = 'file';
 
-    $classesToAppend = 'custom-file-input ' . ($errors->has($inputName) ? 'is-invalid ' : '');
+    $classesToAppend = 'custom-file-input ' . ($errors->has($inputName) ? ' is-invalid ' : '');
 
     if (array_key_exists('class', $inputAttributes)) {
         $inputAttributes['class'] .= $classesToAppend;

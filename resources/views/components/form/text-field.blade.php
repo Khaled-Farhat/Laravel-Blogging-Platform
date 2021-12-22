@@ -1,5 +1,5 @@
 @php
-    $classesToAppend = ' form-control' . ($errors->has($inputName) ? 'is-invalid ' : '');
+    $classesToAppend = ' form-control' . ($errors->has($inputName) ? ' is-invalid ' : '');
 
     if (array_key_exists('class', $inputAttributes)) {
         $inputAttributes['class'] .= $classesToAppend;
