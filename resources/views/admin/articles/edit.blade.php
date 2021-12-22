@@ -19,6 +19,7 @@
     {!! Form::fileField('Update Image: ', 'image') !!}
 
     {!! Form::textareaField('Body: ', 'body') !!}
+    {!! Form::textField('Tags: (Comma-separated)', 'tagsList', ['value' => $articleTagsList]) !!}
     {!! Form::submitButton('Update Article') !!}
     {!! Form::close() !!}
 @endsection

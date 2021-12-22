@@ -12,6 +12,7 @@
     {!! Form::selectField('Category: ', 'category_id', $categories, ['placeholder' => 'Uncategorized']) !!}
     {!! Form::fileField('Image: ', 'image') !!}
     {!! Form::textareaField('Body: ', 'body') !!}
+    {!! Form::textField('Tags: (Comma-separated)', 'tagsList') !!}
     {!! Form::submitButton('Create Article') !!}
     {!! Form::close() !!}
 @endsection

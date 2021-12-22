@@ -29,6 +29,7 @@ class StoreArticleRequest extends FormRequest
             'category_id' => ['nullable', Rule::exists('categories', 'id')],
             'body' => ['required', 'string'],
             'image' => ['sometimes', 'nullable', 'image'],
+            'tagsList' => ['nullable', 'string'],
         ];
     }
 }

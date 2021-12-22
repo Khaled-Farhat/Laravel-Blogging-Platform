@@ -8,8 +8,10 @@ use App\Http\Requests\Article\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Image;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminArticleController extends Controller
 {
@@ -56,6 +58,7 @@ class AdminArticleController extends Controller
     {
         $data = $request->validated();
         unset($data['image']);
+        unset($data['tags']);
 
         $article = auth()->user()->articles()->create($data);
 
@@ -64,6 +67,8 @@ class AdminArticleController extends Controller
             $image = new Image(['path' => $image_path]);
             $article->image()->save($image);
         }
+
+        $article->setTags($request->tagsList);
 
         session()->flash('alert.success', 'The article was created successfully');
         return redirect()->route('admin.articles.index');
@@ -94,6 +99,7 @@ class AdminArticleController extends Controller
 
         return view('admin.articles.edit', [
             'article' => $article,
+            'articleTagsList' => $article->tags()->pluck('name')->implode(', '),
             'categories' => Category::pluck('name', 'id'),
         ]);
     }
@@ -109,6 +115,7 @@ class AdminArticleController extends Controller
     {
         $data = $request->validated();
         unset($data['image']);
+        unset($data['tags']);
 
         $article->update($data);
 
@@ -122,6 +129,8 @@ class AdminArticleController extends Controller
 
             $article->image()->save($image);
         }
+
+        $article->setTags($request->tagsList);
 
         session()->flash('alert.success', 'The article was updated successfully');
         return redirect()->route('admin.articles.index');

@@ -6,6 +6,7 @@ use App\Scopes\LatestScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Article extends Model
 {
@@ -57,5 +58,21 @@ class Article extends Model
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function setTags($tagsList)
+    {
+        $tagsIds = [];
+
+        if (!is_null($tagsList)) {
+            $tagsNames = explode(',', $tagsList);
+
+            foreach ($tagsNames as $tagName) {
+                $tag = Tag::firstOrCreate(['name' => Str::of(Str::lower($tagName))->trim()]);
+                $tagsIds[] = $tag->id;
+            }
+        }
+
+        $this->tags()->sync($tagsIds);
     }
 }
