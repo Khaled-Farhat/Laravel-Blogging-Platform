@@ -10,7 +10,7 @@
 @endphp
 
 {!! Form::label($labelName, null, ['class' => 'control-label mt-3']) !!}
-{!! Form::text($inputName, old($inputName), $inputAttributes) !!}
+{!! Form::text($inputName, ($inputAttributes['value'] ?? old($inputName)), $inputAttributes) !!}
 
 @error($inputName)
     <div class="text-danger mb-1">
