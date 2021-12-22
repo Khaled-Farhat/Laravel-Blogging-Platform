@@ -61,7 +61,13 @@ class AdminTagController extends Controller
         $this->authorize('view', $tag);
 
         return view('admin.articles.index', [
-            'articles' => $tag->articles()->paginate(7),
+            'articles' => $tag
+                ->articles()
+                ->with([
+                    'user:id,name',
+                    'image',
+                    'category:id,name',
+                ])->paginate(7),
             'head' => 'Showing articles with tag: ' . $tag->name,
         ]);
     }

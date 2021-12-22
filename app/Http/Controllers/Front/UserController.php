@@ -19,7 +19,15 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('articles.index', [
-            'articles' => $user->articles()->withCount('comments')->paginate(7),
+            'articles' => $user
+                ->articles()
+                ->with([
+                    'user:id,name',
+                    'image',
+                    'category:id,name',
+                    'tags:id,name'
+                ])->withCount('comments')
+                ->paginate(7),
             'categories' => Category::all(),
             'tags' => Tag::all(),
             'head' => 'Showing articles from user: ' . $user->name,

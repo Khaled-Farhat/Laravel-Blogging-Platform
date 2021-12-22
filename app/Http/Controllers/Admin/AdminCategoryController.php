@@ -62,7 +62,13 @@ class AdminCategoryController extends Controller
         $this->authorize('view', $category);
 
         return view('admin.articles.index', [
-            'articles' => $category->articles()->paginate(7),
+            'articles' => $category
+                ->articles()
+                ->with([
+                    'user:id,name',
+                    'image',
+                    'category:id,name',
+                ])->paginate(7),
             'head' => 'Showing articles from category: ' . $category->name,
         ]);
     }

@@ -21,7 +21,9 @@ class AdminUserController extends Controller
         $this->authorize('viewAny', User::class);
 
         return view('admin.users.index', [
-            'users' => User::paginate(7),
+            'users' => User::with([
+                    'role:id,name'
+                ])->paginate(7),
         ]);
     }
 
@@ -62,7 +64,14 @@ class AdminUserController extends Controller
         $this->authorize('view', $user);
 
         return view('admin.articles.index', [
-            'articles' => $user->articles()->paginate(7),
+            'articles' => $user
+                ->articles()
+                ->with([
+                    'user:id,name',
+                    'image',
+                    'category:id,name',
+                    'tags:id,name'
+                ])->paginate(7),
             'head' => 'Showing articles of user: ' . $user->name,
         ]);
     }

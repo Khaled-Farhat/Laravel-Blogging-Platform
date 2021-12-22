@@ -10,7 +10,7 @@
 
     @foreach($articles as $article)
         <div class="card mb-3">
-            @if($article->image()->exists())
+            @if(!is_null($article->image))
                 <img src="{{ $article->image->url() }}" class="img-fluid card-img-top" style="max-height: 250px; object-fit: cover;">
             @endif
             <div class="card-body">

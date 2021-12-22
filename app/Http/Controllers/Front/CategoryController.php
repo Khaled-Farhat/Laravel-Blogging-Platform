@@ -18,7 +18,16 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         return view('articles.index', [
-            'articles' => $category->articles()->withCount('comments')->paginate(7),
+            'articles' => $category
+                ->articles()
+                ->with([
+                    'user:id,name',
+                    'image',
+                    'category:id,name',
+                    'tags:id,name'
+                ])
+                ->withCount('comments')
+                ->paginate(7),
             'categories' => Category::all(),
             'tags' => Tag::all(),
             'head' => 'Showing articles from category: ' . $category->name,

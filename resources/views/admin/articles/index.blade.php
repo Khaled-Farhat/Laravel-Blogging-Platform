@@ -27,7 +27,7 @@
                     <td><a href="{{ route('admin.users.show', $article->user) }}">{{ $article->user->name }}</a></td>
                     <td>{{ $article->title }}</td>
                     <td>
-                        @if($article->image()->exists())
+                        @if(!is_null($article->image))
                             <img src="{{ $article->image->url() }}" class="img-fluid card-img-top" style="max-height: 30px; object-fit: cover;">
                         @else
                             No image
