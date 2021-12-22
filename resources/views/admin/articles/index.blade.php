@@ -1,13 +1,13 @@
 @extends('layouts.admin', ['currentPage' => 'articles'])
 
 @section('content')
-    @isset($head)
+    @if(isset($head))
         <h2 class="mb-4">{{ $head }}</h2>
-    @endisset
-
-    @can('create', App\Models\Article::class)
-        <a class="btn btn-primary mb-3" href="{{ route('admin.articles.create') }}">Create Article</a>
-    @endcan
+    @else
+        @can('create', App\Models\Article::class)
+            <a class="btn btn-primary mb-3" href="{{ route('admin.articles.create') }}">Create Article</a>
+        @endcan
+    @endif
 
     @if($articles->isEmpty())
         <h1>No Article Exists</h1>
@@ -16,6 +16,7 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
+                    <th scope="col">Last update</th>
                     <th scope="col">Author</th>
                     <th scope="col">Title</th>
                     <th scope="col">Image</th>
@@ -27,6 +28,7 @@
                 @foreach($articles as $article)
                     <tr>
                         <th scope="row">{{ $article->id }}</th>
+                        <td>{{ $article->updated_at->diffForHumans() }}</td>
                         <td><a href="{{ route('admin.users.show', $article->user) }}">{{ $article->user->name }}</a></td>
                         <td><a href="{{ route('admin.articles.show', $article) }}">{{ $article->title }}</a></td>
                         <td>
