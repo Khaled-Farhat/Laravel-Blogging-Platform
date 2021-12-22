@@ -20,7 +20,7 @@
                         <th scope="row">{{ $comment->id }}</th>
                         <td>{{ $comment->name }}</td>
                         <td>{{ $comment->body }}</td>
-                        <td>{{ $comment->article->title }}</td>
+                        <td><a href="{{ route('articles.show', $comment->article) }}">{{ $comment->article->title }}</a></td>
 
                         <td class="d-flex flex-row">
                             @can('view', $comment->article)
