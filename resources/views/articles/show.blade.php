@@ -19,11 +19,13 @@
             </h6>
             <p class="card-text my-4">{!! nl2br(e($article->body)) !!}</p>
 
-            <div class="my-3">
-                @foreach($article->tags as $tag)
-                    <a class="btn-sm btn-light" href="{{ route('tags.show', $tag) }}">{{ $tag->name }}</a>
-                @endforeach
-            </div>
+            @if($article->tags->isNotEmpty())
+                <div class="my-3">
+                    @foreach($article->tags as $tag)
+                        <a class="btn-sm btn-light" href="{{ route('tags.show', $tag) }}">{{ $tag->name }}</a>
+                    @endforeach
+                </div>
+            @endif
         </div>
 
         <div class="card mt-2">

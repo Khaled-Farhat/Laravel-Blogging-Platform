@@ -26,7 +26,7 @@
                         @endisset
                     </h6>
 
-                    @isset($article->tags)
+                    @if($article->tags->isNotEmpty())
                         <div class="mt-2">
                             <div class="d-inline card-subtitle text-muted mr-2">Tags:</div>
 
@@ -34,7 +34,7 @@
                                 <a class="btn-sm btn-light" href="{{ route('tags.show', $tag) }}">{{ $tag->name }}</a>
                             @endforeach
                         </div>
-                    @endisset
+                    @endif
 
                     <h6 class="mt-2 card-subtitle text-muted">
                         {{ $article->comments_count }}
