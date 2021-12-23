@@ -33,7 +33,7 @@
                         <td><a href="{{ route('admin.articles.show', $article) }}">{{ $article->title }}</a></td>
                         <td>
                             @if(!is_null($article->image))
-                                <img src="{{ $article->image->url() }}" class="img-fluid card-img-top" style="max-height: 30px; object-fit: cover;">
+                                <img src="{{ $article->image->url() }}" class="img-fluid card-img-top" style="max-height: 40px; max-width:100px; object-fit: cover;">
                             @else
                                 No image
                             @endif
