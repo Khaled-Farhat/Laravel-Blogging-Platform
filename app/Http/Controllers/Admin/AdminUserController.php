@@ -108,7 +108,7 @@ class AdminUserController extends Controller
         $user->update($request->validated());
 
         session()->flash('alert.success', 'The user was updated successfully');
-        return redirect()->route('admin.users.index');
+        return redirect()->back();
     }
 
     /**
