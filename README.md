@@ -9,10 +9,10 @@ The project was written in PHP with the Laravel Framework and Bootstrap Library.
 4. Run `php artisan key:generate` to generate an app encryption key.
 5. Run `php artisan migrate` to migrate the database.
 6. [Optional] Run `php artisan db:seed --class=DummyDataSeeder` if you want to create some dummy data.
+
 Launch the main URL. You can log in to the admin panel using the default credentials: `admin@blog.test` - `password`.
 
 ## Screenshots
-
 ![home](https://github.com/Khaled-Farhat/Laravel-Blogging-Platform/blob/main/screenshots/home.png?raw=true)
 
 
@@ -26,4 +26,3 @@ Launch the main URL. You can log in to the admin panel using the default credent
 
 
 ![admin-users](https://github.com/Khaled-Farhat/Laravel-Blogging-Platform/blob/main/screenshots/admin-users.png?raw=true)
-
