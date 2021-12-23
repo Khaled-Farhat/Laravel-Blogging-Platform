@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminArticleController;
+use App\Http\Controllers\Admin\AdminImageController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Front\CategoryController;
 use App\Http\Controllers\Front\CommentController;
@@ -48,7 +49,9 @@ Route::middleware('auth')
         Route::match(['PUT', 'PATCH'], '/comments/{comment}', [AdminCommentController::class, 'approve'])->name('comments.approve');
         Route::resource('/comments', AdminCommentController::class)->only(['index', 'destroy']);
 
+        Route::resource('/images', AdminImageController::class)->only(['destroy']);
+
         Route::resource('/tags', AdminTagController::class);
-        Route::resource('users', AdminUserController::class);
+        Route::resource('/users', AdminUserController::class);
     }
 );

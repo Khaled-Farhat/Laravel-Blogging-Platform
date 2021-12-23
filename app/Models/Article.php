@@ -16,7 +16,6 @@ class Article extends Model
         'title',
         'category_id',
         'body',
-        'image_id',
     ];
 
     protected static function boot()
