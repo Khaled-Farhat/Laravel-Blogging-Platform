@@ -13,16 +13,17 @@ Launch the main URL. You can log in to the admin panel using the default credent
 
 ## Screenshots
 
-![](https://raw.githubusercontent.com/Khaled-Farhat/Laravel-Blogging-Platform/master/screenshots/home.png)
+![home](https://github.com/Khaled-Farhat/Laravel-Blogging-Platform/blob/main/screenshots/home.png?raw=true)
 
 
-![](https://raw.githubusercontent.com/Khaled-Farhat/Laravel-Blogging-Platform/master/screenshots/article-show.png)
+![article-show](https://github.com/Khaled-Farhat/Laravel-Blogging-Platform/blob/main/screenshots/article-show.png?raw=true)
 
 
-![](https://raw.githubusercontent.com/Khaled-Farhat/Laravel-Blogging-Platform/master/screenshots/admin-articles.png)
+![admin-articles](https://github.com/Khaled-Farhat/Laravel-Blogging-Platform/blob/main/screenshots/admin-articles.png?raw=true)
 
 
-![](https://raw.githubusercontent.com/Khaled-Farhat/Laravel-Blogging-Platform/master/screenshots/admin-article-comments.png)
+![admin-article-comments](https://github.com/Khaled-Farhat/Laravel-Blogging-Platform/blob/main/screenshots/admin-article-comments.png?raw=true)
 
 
-![](https://raw.githubusercontent.com/Khaled-Farhat/Laravel-Blogging-Platform/master/screenshots/admin-users.png)
+![admin-users](https://github.com/Khaled-Farhat/Laravel-Blogging-Platform/blob/main/screenshots/admin-users.png?raw=true)
+
