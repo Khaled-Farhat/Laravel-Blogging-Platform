@@ -5,7 +5,7 @@ The project was written in PHP with the Laravel Framework and Bootstrap Library.
 ## How to use
 1. Run `git clone https://github.com/Khaled-Farhat/Laravel-Blogging-Platform` to clone the repository.
 2. Run `composer install` to install composer dependencies.
-3. Copy `.env.example` to .`env` and edit the database credentials there.
+3. Copy `.env.example` to `.env` and edit the database credentials there.
 4. Run `php artisan key:generate` to generate an app encryption key.
 5. Run `php artisan migrate` to migrate the database.
 6. [Optional] Run `php artisan db:seed --class=DummyDataSeeder` if you want to create some dummy data.
